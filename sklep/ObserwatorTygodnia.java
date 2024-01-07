@@ -1,5 +1,5 @@
 package sklep;
 
 public interface ObserwatorTygodnia {
-     void aktualizacja(int ktoryTydzien);
+    public void aktualizacja(int ktoryTydzien);
 }

@@ -8,10 +8,13 @@ import java.util.Map;
 public class Metoda3 implements RelokacjaWzgledemPopytu{
 //  Kolejnosc: gora, dol, srodek
     @Override
-    public void sposobRelokacjiWzgledemPopytu(Statystyka statystyka, Polka[][] polka) {
+    public void sposobRelokacjiWzgledemPopytu(Statystyka statystyka, Polka[][] tablicaPolek) {
 
         Map<Polka, Integer> wynikSprzedazyProduktu = statystyka.generujRanking();
 
+        final int maxPopyt = 0, midPopyt = 2;
+
+        Relokuj.relokuj(tablicaPolek, wynikSprzedazyProduktu, maxPopyt, midPopyt);
 
     }
 }

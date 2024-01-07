@@ -8,9 +8,9 @@ public class Polka {
     private double cena;
     private final int glebokoscPolki = 10; //powinno byc 10 normalnie
     private int dataWaznosci;
-    
+
     private Produkt[] produkty1D;
-    
+
     public Polka() {
         this.produkty1D = new Produkt[glebokoscPolki];
     }
@@ -21,6 +21,19 @@ public class Polka {
         this.cena = produkty1D[0].getCena();
         this.dataWaznosci=produkty1D[0].getDataWaznosci();
     }
+    
+    public void dosunProdukty() {
+        for(int i=0;i<produkty1D.length;i++) {
+            if(produkty1D[i] != null)
+                for(int j=0;j<produkty1D.length;j++)
+                    if(produkty1D[j] == null){
+                        produkty1D[j] = produkty1D[i];
+                        produkty1D[i] = null;
+                    }
+
+        }
+    }
+    
     //GETTERY
     public String getTypProduktu() {
         return typProduktu;
@@ -37,11 +50,11 @@ public class Polka {
     public Produkt[] getProdukty1D() {
         return produkty1D;
     }
-    
+
     public int getDataWaznosci() {
-    	return dataWaznosci;
+        return dataWaznosci;
     }
-    
+
     //SETTERY
     public void setTypProduktu(String typProduktu) {
         this.typProduktu = typProduktu;
