@@ -3,10 +3,11 @@ package statystyka;
 import sklep.PodmiotStatystyki;
 import sklep.Polka;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StatystykaOgolna implements ObserwatorStatystyki {
+public class StatystykaOgolna implements ObserwatorStatystyki, Serializable {
     //TODO: na razie statystyka ogolna dziala tylko na laczny zysk, moge zmienic jesli chcemy tez miec ilosc produktow
 
     private Map<String, Double> statystykiOgolne;

@@ -5,10 +5,11 @@ import statystyka.ObserwatorStatystyki;
 import statystyka.Statystyka;
 import statystyka.StatystykaOgolna;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Regal implements ObserwatorTygodnia, PodmiotStatystyki {
+public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializable {
     private final int szerokosc = 5;
     private final int wysokosc = 3;
     private Polka[][] polkiWRegale;

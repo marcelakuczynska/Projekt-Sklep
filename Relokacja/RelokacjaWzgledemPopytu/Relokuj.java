@@ -2,9 +2,10 @@ package Relokacja.RelokacjaWzgledemPopytu;
 
 import sklep.Polka;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class Relokuj {
+public class Relokuj implements Serializable {
 
     static void relokuj(Polka[][] tablicaPolek, Map<Polka, Integer> wynikSprzedazyProduktu, int maxPopyt, int midPopyt) {
         for(int i=0;i< tablicaPolek.length;i++){

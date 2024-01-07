@@ -3,9 +3,10 @@ package Relokacja.RelokacjaWzgledemPopytu;
 import sklep.Polka;
 import statystyka.Statystyka;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class Metoda2 implements RelokacjaWzgledemPopytu{
+public class Metoda2 implements RelokacjaWzgledemPopytu, Serializable {
 //  Kolejnosc: srodek, dol, gora
     @Override
     public void sposobRelokacjiWzgledemPopytu(Statystyka statystka, Polka [][] tablicaPolek) {

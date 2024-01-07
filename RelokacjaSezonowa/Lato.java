@@ -3,8 +3,10 @@ package RelokacjaSezonowa;
 import sklep.Regal;
 import sklep.Sklep;
 
+import java.io.Serializable;
+
 //owoceWarzywa, napoje, nabial, mięso-->napoje,owoceWarzywa,nabial,mieso
-public class Lato implements RelokacjaSezonowa{
+public class Lato implements RelokacjaSezonowa, Serializable {
     public void SposobRelokacjiSezonowej(Sklep sklep) {
         Regal[] Regaly = sklep.getRegalyWSklepie();
         Regal[] kopia = Regaly.clone();

@@ -1,8 +1,9 @@
 package sklep;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Polka {
+public class Polka implements Serializable {
     private String typProduktu;
     private String producent;
     private double cena;

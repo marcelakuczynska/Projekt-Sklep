@@ -6,10 +6,11 @@ import RelokacjaSezonowa.Lato;
 import RelokacjaSezonowa.Jesien;
 import RelokacjaSezonowa.Zima;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Sklep implements PodmiotTydzien {
+public class Sklep implements PodmiotTydzien, Serializable {
     ArrayList<ObserwatorTygodnia> listaObs;
     private Regal[] regalyWSklepie; // tablica z regałami
     private int ktoryTydzien; //który jest tydzień symulacji zaczynamy 1
@@ -41,6 +42,7 @@ public class Sklep implements PodmiotTydzien {
     public void uplywCzasu() {
         ktoryTydzien++;
         powiadomObserwatorow();
+        zapiszDoPliku();
     }
 
     public void wczytajPierwszaDostawa() {
@@ -210,4 +212,27 @@ public class Sklep implements PodmiotTydzien {
                 ", iloscRegalow=" + iloscRegalow +
                 '}';
     }
+
+
+        public void zapiszDoPliku() {
+            try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("Sklep.ser"))) {
+                outputStream.writeObject(this);
+                System.out.println("Obiekt zapisany do pliku: " + "Sklep.ser");
+            } catch (IOException e) {
+                System.err.println("Błąd podczas zapisywania do pliku: " + e.getMessage());
+            }
+        }
+
+        public Sklep wczytajZPliku() {
+            Sklep sklep = null;
+            try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("Sklep.ser"))) {
+                sklep = (Sklep) inputStream.readObject();
+                System.out.println("Obiekt wczytany z pliku: " + "Sklep.ser");
+            } catch (IOException | ClassNotFoundException e) {
+                System.err.println("Błąd podczas wczytywania z pliku: " + e.getMessage());
+            }
+            return sklep;
+        }
+
+
 }

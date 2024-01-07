@@ -1,6 +1,8 @@
 package sklep;
 
-public class Dostawa {
+import java.io.Serializable;
+
+public class Dostawa implements Serializable {
     private Object[][] dostawa = new Object[60][6];
 
     public Dostawa() {

@@ -3,7 +3,9 @@ package RelokacjaSezonowa;
 import sklep.Regal;
 import sklep.Sklep;
 
-public class Wiosna implements RelokacjaSezonowa{
+import java.io.Serializable;
+
+public class Wiosna implements RelokacjaSezonowa, Serializable {
     @Override                           ////nabial,mieso,napoje,owoceWarzywa
     // rok zaczynamy od zimy wiec na poczatku symulacji regaly muszą być w takiej kolejności
     public void SposobRelokacjiSezonowej(Sklep sklep) {

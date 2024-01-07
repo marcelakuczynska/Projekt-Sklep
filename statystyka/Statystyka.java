@@ -3,9 +3,10 @@ package statystyka;
 import sklep.PodmiotStatystyki;
 import sklep.Polka;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Statystyka implements ObserwatorStatystyki {
+public class Statystyka implements ObserwatorStatystyki, Serializable {
     //przechowujemy w hashmapie polke i ilosc sprzedanych produktow dla niej
     private Map<Polka, Integer> wynikSprzedazyProduktu;
 

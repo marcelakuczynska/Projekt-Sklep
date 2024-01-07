@@ -1,6 +1,8 @@
 package sklep;
 
-public class Produkt {
+import java.io.Serializable;
+
+public class Produkt implements Serializable {
     private String typProduktu; //np. mleko, mąka, jajka
     private String producent; // nazwa firmy (rozróżnienie produktów tego samego typu)
     private int dataWaznosci; // ile tygodni do końca przydatności

@@ -2,13 +2,12 @@ package programglowny;
 
 import Relokacja.RelokacjaWzgledemPopytu.*;
 import sklep.Polka;
-import sklep.Produkt;
 import sklep.Regal;
 import sklep.Sklep;
 
 import java.util.Map;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         Sklep test = new Sklep();
         test.wczytajPierwszaDostawa();
@@ -72,5 +71,8 @@ public class main {
 
         test.ZrelokujSezonowo(48,test); // cos to robi bo printuje inaczej niz bez ale przy takiej ilosci danych cholera wie czy dobrze xdd
         test.wyswietlSklep();
+
+
+
     }
 }
