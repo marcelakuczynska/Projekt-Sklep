@@ -72,7 +72,12 @@ public class Main {
         test.ZrelokujSezonowo(48,test); // cos to robi bo printuje inaczej niz bez ale przy takiej ilosci danych cholera wie czy dobrze xdd
         test.wyswietlSklep();
 
+        /* TEST SERIALIZACJI
 
+        test.zapiszDoPliku();
+        test.ZrelokujSezonowo(68, test);
+        test.wczytajZPliku().wyswietlSklep();
 
+         */
     }
 }

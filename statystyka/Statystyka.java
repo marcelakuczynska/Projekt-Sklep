@@ -94,5 +94,4 @@ public class Statystyka implements ObserwatorStatystyki, Serializable {
     public void setWynikSprzedazyProduktu(Map<Polka, Integer> wynikSprzedazyProduktu) {
         this.wynikSprzedazyProduktu = wynikSprzedazyProduktu;
     }
-
 }

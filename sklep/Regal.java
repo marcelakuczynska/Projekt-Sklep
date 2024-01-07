@@ -71,7 +71,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
                     for (int k = 0; k < getProdukty1D.length; k++) {
                         if (getProdukty1D[k] != null)
                             getProdukty1D[k].zmianaDatyWaznosci();
-                        if(getProdukty1D[k].getDataWaznosci()==1)
+                        if(getProdukty1D[k].getDataWaznosci() == 1)
                             getProdukty1D[k].zrobPromocje(0.5);
                     }
                 }
@@ -108,6 +108,27 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
         }
     }
 
+    public void relokacjaWzgledemPopytu() {
+        relokacjaWzgledemPopytu.sposobRelokacjiWzgledemPopytu(statystyka,polkiWRegale);
+    }
+
+    @Override
+    public void zarejestrujObserwatora(ObserwatorStatystyki obserwatorStatystyki) {
+        listaObserwatorow.add(obserwatorStatystyki);
+    }
+
+    @Override
+    public void usunObserwatora(ObserwatorStatystyki obserwatorStatystyki) {
+        listaObserwatorow.remove(obserwatorStatystyki);
+    }
+
+    @Override
+    public void powiadomObserwatorow(Polka polka) {
+        for (ObserwatorStatystyki obserwator : listaObserwatorow){
+            obserwator.aktualizacja(polka);
+        }
+    }
+
     //GETTERY
 
     public int getSzerokosc() {
@@ -134,29 +155,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
         this.polkiWRegale = polkiWRegale;
     }
 
-    @Override
-    public void zarejestrujObserwatora(ObserwatorStatystyki obserwatorStatystyki) {
-        listaObserwatorow.add(obserwatorStatystyki);
-    }
-
-    @Override
-    public void usunObserwatora(ObserwatorStatystyki obserwatorStatystyki) {
-        listaObserwatorow.remove(obserwatorStatystyki);
-    }
-
-    @Override
-    public void powiadomObserwatorow(Polka polka) {
-        for (ObserwatorStatystyki obserwator : listaObserwatorow){
-            obserwator.aktualizacja(polka);
-        }
-    }	
-
     public void setRelokacjaWzgledemPopytu(RelokacjaWzgledemPopytu relokacjaWzgledemPopytu) {
         this.relokacjaWzgledemPopytu = relokacjaWzgledemPopytu;
     }
-
-    public void relokacjaWzgledemPopytu() {
-        relokacjaWzgledemPopytu.sposobRelokacjiWzgledemPopytu(statystyka,polkiWRegale);
-    }
-
 }

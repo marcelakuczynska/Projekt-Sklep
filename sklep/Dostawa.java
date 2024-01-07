@@ -75,8 +75,6 @@ public class Dostawa implements Serializable {
                 {"Woda mineralna", "Nałęczowianka", 3, 1.60, "Nałęczowianka0000", 10}
         };
 
-
-
         this.dostawa = dostawa;
     }
 

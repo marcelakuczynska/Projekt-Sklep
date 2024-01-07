@@ -117,10 +117,10 @@ public class Sklep implements PodmiotTydzien, Serializable {
                     dostawa[x][1]=regalyWSklepie[i].getPolkiWRegale()[j][k].getProducent();
                     dostawa[x][2]=regalyWSklepie[i].getPolkiWRegale()[j][k].getDataWaznosci();
                     dostawa[x][3]=regalyWSklepie[i].getPolkiWRegale()[j][k].getCena();
-                    dostawa[x][4]=String.format("%s%04d",(String)dostawa[x][1],ktoryTydzien);
+                    dostawa[x][4]=String.format("%s%04d", (String)dostawa[x][1], ktoryTydzien);
 
                     for (int l = 0; l < regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D().length; l++) { // glebokosc regalu
-                        if(regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D()[l]==null) {
+                        if(regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D()[l] == null) {
                             ileBrakuje++;
                             regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D()[l] = new Produkt(
                                     (String) dostawa[x][0],
@@ -169,6 +169,26 @@ public class Sklep implements PodmiotTydzien, Serializable {
         }
     }
 
+    //SERIALIZACJA
+    public void zapiszDoPliku() {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("Sklep.ser"))) {
+            outputStream.writeObject(this);
+            System.out.println("Obiekt zapisany do pliku: " + "Sklep.ser");
+        } catch (IOException e) {
+            System.err.println("Błąd podczas zapisywania do pliku: " + e.getMessage());
+        }
+    }
+
+    public Sklep wczytajZPliku() {
+        Sklep sklep = null;
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("Sklep.ser"))) {
+            sklep = (Sklep) inputStream.readObject();
+            System.out.println("Obiekt wczytany z pliku: " + "Sklep.ser");
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Błąd podczas wczytywania z pliku: " + e.getMessage());
+        }
+        return sklep;
+    }
 
     @Override
     public void zarejestrujObserwatora(ObserwatorTygodnia o) {
@@ -187,6 +207,16 @@ public class Sklep implements PodmiotTydzien, Serializable {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Sklep{" +
+                "listaObs=" + listaObs +
+                ", regalyWSklepie=" + Arrays.toString(regalyWSklepie) +
+                ", ktoryTydzien=" + ktoryTydzien +
+                ", iloscRegalow=" + iloscRegalow +
+                '}';
+    }
+
     public Regal[] getRegalyWSklepie() {
         return regalyWSklepie;
     }
@@ -202,37 +232,4 @@ public class Sklep implements PodmiotTydzien, Serializable {
     public ArrayList<ObserwatorTygodnia> getListaObs() {
         return listaObs;
     }
-
-    @Override
-    public String toString() {
-        return "Sklep{" +
-                "listaObs=" + listaObs +
-                ", regalyWSklepie=" + Arrays.toString(regalyWSklepie) +
-                ", ktoryTydzien=" + ktoryTydzien +
-                ", iloscRegalow=" + iloscRegalow +
-                '}';
-    }
-
-
-        public void zapiszDoPliku() {
-            try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("Sklep.ser"))) {
-                outputStream.writeObject(this);
-                System.out.println("Obiekt zapisany do pliku: " + "Sklep.ser");
-            } catch (IOException e) {
-                System.err.println("Błąd podczas zapisywania do pliku: " + e.getMessage());
-            }
-        }
-
-        public Sklep wczytajZPliku() {
-            Sklep sklep = null;
-            try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("Sklep.ser"))) {
-                sklep = (Sklep) inputStream.readObject();
-                System.out.println("Obiekt wczytany z pliku: " + "Sklep.ser");
-            } catch (IOException | ClassNotFoundException e) {
-                System.err.println("Błąd podczas wczytywania z pliku: " + e.getMessage());
-            }
-            return sklep;
-        }
-
-
 }

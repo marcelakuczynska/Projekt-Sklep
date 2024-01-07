@@ -18,13 +18,13 @@ public class Produkt implements Serializable {
         this.cena = cena;
         this.czyPromocja = czyPromocja;
         this.idProduktu = idProduktu;
-        this.producent=Producent;
-        this.wartoscPromocji=wartoscPromocji;
+        this.producent = Producent;
+        this.wartoscPromocji = wartoscPromocji;
     }
 
     public void zrobPromocje (double wartoscPromocji) { //ustalenie promocji
-        czyPromocja=true;
-        this.wartoscPromocji=wartoscPromocji;
+        czyPromocja = true;
+        this.wartoscPromocji = wartoscPromocji;
     }
 
     public void zmianaDatyWaznosci () {

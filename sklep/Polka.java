@@ -24,15 +24,28 @@ public class Polka implements Serializable {
     }
     
     public void dosunProdukty() {
-        for(int i=0;i<produkty1D.length;i++) {
+        for(int i = 0; i < produkty1D.length; i++) {
             if(produkty1D[i] != null)
-                for(int j=0;j<produkty1D.length;j++)
+                for(int j = 0; j < produkty1D.length; j++)
                     if(produkty1D[j] == null){
                         produkty1D[j] = produkty1D[i];
                         produkty1D[i] = null;
                     }
 
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Polka polka = (Polka) o;
+        return cena == polka.cena && Objects.equals(typProduktu, polka.typProduktu) && Objects.equals(producent, polka.producent);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(typProduktu, producent, cena);
     }
     
     //GETTERY
@@ -74,18 +87,5 @@ public class Polka implements Serializable {
         this.typProduktu = produkty1D[0].getTypProduktu();
         this.producent = produkty1D[0].getProducent();
         this.cena = produkty1D[0].getCena();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Polka polka = (Polka) o;
-        return cena == polka.cena && Objects.equals(typProduktu, polka.typProduktu) && Objects.equals(producent, polka.producent);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(typProduktu, producent, cena);
     }
 }
