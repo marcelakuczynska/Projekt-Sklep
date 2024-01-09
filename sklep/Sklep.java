@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Sklep implements PodmiotTydzien, Serializable {
-    ArrayList<ObserwatorTygodnia> listaObs;
+    ArrayList<ObserwatorTygodnia> listaObserwatorow;
     private Regal[] regalyWSklepie; // tablica z regałami
     private int ktoryTydzien; //który jest tydzień symulacji zaczynamy 1
     private int iloscRegalow; //ilość regałów na ten moment 4
-    private RelokacjaSezonowa RS;
+    private RelokacjaSezonowa relokacjaSezonowa;
 
     public Sklep() {		//domyślny jego używamy
         ktoryTydzien = 1;
         iloscRegalow = 4;
-        listaObs = new ArrayList<>();
+        listaObserwatorow = new ArrayList<>();
 
         regalyWSklepie = new Regal[iloscRegalow];
 
@@ -24,20 +24,11 @@ public class Sklep implements PodmiotTydzien, Serializable {
             regalyWSklepie[i] = new Regal(this);
     }
 
-    public Sklep(int ktoryTydzien, int iloscRegalow) {
-        this.ktoryTydzien = ktoryTydzien;
-        this.iloscRegalow = iloscRegalow;
-        listaObs = new ArrayList<>();
-
-        regalyWSklepie = new Regal[iloscRegalow];
-        for(int i = 0; i < iloscRegalow; i++) {
-            regalyWSklepie[i] = new Regal(this);
-        }
-    }
-
     public void uplywCzasu() {
         ktoryTydzien++;
         powiadomObserwatorow();
+        kolejneDostawy();
+        zrelokujSezonowo();
         zapiszDoPliku();
     }
 
@@ -140,25 +131,25 @@ public class Sklep implements PodmiotTydzien, Serializable {
     }
 
     public void ustawRelokacjeSezonowa(RelokacjaSezonowa strategia) {
-        this.RS= strategia;
+        this.relokacjaSezonowa = strategia;
     }
 
-    public void ZrelokujSezonowo(int ktoryTydzien, Sklep sklep){
+    public void zrelokujSezonowo(){
         if (ktoryTydzien>=10 && ktoryTydzien<=22) { //Wiosna
            ustawRelokacjeSezonowa(new Wiosna());
-           RS.SposobRelokacjiSezonowej(sklep);
+           relokacjaSezonowa.SposobRelokacjiSezonowej(this);
         }
         if (ktoryTydzien>=23 && ktoryTydzien<=35) { //Lato
             ustawRelokacjeSezonowa(new Lato());
-            RS.SposobRelokacjiSezonowej(sklep);
+            relokacjaSezonowa.SposobRelokacjiSezonowej(this);
         }
         if (ktoryTydzien>=36 && ktoryTydzien<=48) { //Jesien
             ustawRelokacjeSezonowa(new Jesien());
-            RS.SposobRelokacjiSezonowej(sklep);
+            relokacjaSezonowa.SposobRelokacjiSezonowej(this);
         }
         if ((ktoryTydzien>=1 && ktoryTydzien<=9) || (ktoryTydzien>=49 && ktoryTydzien<=52)) { //Zima
            ustawRelokacjeSezonowa(new Zima());
-           RS.SposobRelokacjiSezonowej(sklep);
+           relokacjaSezonowa.SposobRelokacjiSezonowej(this);
         } else {
             System.out.println("Wprowadz poprawny numer tygodnia!");
         }
@@ -187,25 +178,25 @@ public class Sklep implements PodmiotTydzien, Serializable {
 
     @Override
     public void zarejestrujObserwatora(ObserwatorTygodnia o) {
-        listaObs.add(o);
+        listaObserwatorow.add(o);
     }
 
     @Override
     public void usunObserwatora(ObserwatorTygodnia o) {
-        listaObs.remove(o);
+        listaObserwatorow.remove(o);
     }
 
     @Override
     public void powiadomObserwatorow() {
-        for (int i = 0; i < listaObs.size(); i++) {
-            listaObs.get(i).aktualizacja(ktoryTydzien);
+        for (int i = 0; i < listaObserwatorow.size(); i++) {
+            listaObserwatorow.get(i).aktualizacja(ktoryTydzien);
         }
     }
 
     @Override
     public String toString() {
         return "Sklep{" +
-                "listaObs=" + listaObs +
+                "listaObs=" + listaObserwatorow +
                 ", regalyWSklepie=" + Arrays.toString(regalyWSklepie) +
                 ", ktoryTydzien=" + ktoryTydzien +
                 ", iloscRegalow=" + iloscRegalow +
@@ -224,7 +215,7 @@ public class Sklep implements PodmiotTydzien, Serializable {
         return ktoryTydzien;
     }
 
-    public ArrayList<ObserwatorTygodnia> getListaObs() {
-        return listaObs;
+    public ArrayList<ObserwatorTygodnia> getListaObserwatorow() {
+        return listaObserwatorow;
     }
 }

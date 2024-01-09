@@ -1,5 +1,6 @@
 package sklep;
 
+import relokacjapopyt.Metoda1;
 import relokacjapopyt.RelokacjaWzgledemPopytu;
 import statystyka.ObserwatorStatystyki;
 import statystyka.StatystykaCaloroczna;
@@ -20,6 +21,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
 
     public Regal(PodmiotTydzien sklep) {
         polkiWRegale = new Polka[wysokosc][szerokosc];
+        relokacjaWzgledemPopytu = new Metoda1();
 
         for (int i = 0; i < polkiWRegale.length; i++) {
             for (int j = 0; j < polkiWRegale[i].length; j++) {
