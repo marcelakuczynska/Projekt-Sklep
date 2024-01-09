@@ -79,24 +79,23 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
 
     public void symulacjaSprzedazy () {    //losowa sprzedaż produktów + też się odpala obserwatorem
         Random gen = new Random();
-        Produkt[] getProdukty1D;
-        //TODO: uporzadkowac
+        Produkt[] produktyNaPolce;
         for(int i = 0; i < polkiWRegale.length; i++) {
             for (int j = 0; j < polkiWRegale[i].length; j++) {
                 //dostajemy sie do klasy polki i tam bedziemy iterowac po glebokosci
-                getProdukty1D = polkiWRegale[i][j].getProdukty1D();
-                if (getProdukty1D != null) {
-                    for (int k = 0; k < getProdukty1D.length; k++) {
-                        if (getProdukty1D[k] != null) {
-                            if (getProdukty1D[k].getCzyPromocja()) {
-                                powiadomObserwatorow(polkiWRegale[i][j], getProdukty1D[k].getCena());
+                produktyNaPolce = polkiWRegale[i][j].getProdukty1D();
+                if (produktyNaPolce != null) {
+                    for (int k = 0; k < produktyNaPolce.length; k++) {
+                        if (produktyNaPolce[k] != null) {
+                            if (produktyNaPolce[k].getCzyPromocja()) {
+                                //powiadamia obserwatorow i przekazuje im polke na ktorej lezy usuwany produkt oraz jego cene
+                                powiadomObserwatorow(polkiWRegale[i][j], produktyNaPolce[k].getCena());
 
-                                getProdukty1D[k] = null;
-                                //powiadamia obserwatorow i przekazuje im CALA POLKE
+                                produktyNaPolce[k] = null;
                             } else if (gen.nextInt(3) + 1 == 1) {//od 1 do 3
-                                powiadomObserwatorow(polkiWRegale[i][j], getProdukty1D[k].getCena());
+                                powiadomObserwatorow(polkiWRegale[i][j], produktyNaPolce[k].getCena());
 
-                                getProdukty1D[k] = null;
+                                produktyNaPolce[k] = null;
                             }
                         }
                     }
