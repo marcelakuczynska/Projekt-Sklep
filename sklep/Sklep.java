@@ -20,8 +20,10 @@ public class Sklep implements PodmiotTydzien, Serializable {
 
         regalyWSklepie = new Regal[iloscRegalow];
 
-        for (int i = 0; i < iloscRegalow; i++)
+        for (int i = 0; i < iloscRegalow; i++) {
             regalyWSklepie[i] = new Regal(this);
+        }
+        wczytajPierwszaDostawa();
     }
 
     public void uplywCzasu() {
@@ -30,6 +32,41 @@ public class Sklep implements PodmiotTydzien, Serializable {
         kolejneDostawy();
         zrelokujSezonowo();
         zapiszDoPliku();
+    }
+
+    public void wyswietlSklep(){
+        for (int i = 0; i < regalyWSklepie.length; i++) {// ktory regal
+            System.out.println("Numer regalu: " + i);
+            for (int k = 0; k < regalyWSklepie[i].getPolkiWRegale()[0].length; k++) { // kolumny regalu
+                for (int j = 0; j < regalyWSklepie[i].getPolkiWRegale().length; j++) { // wiersze regalu
+                    System.out.println("Lokalizacja polki (" + j + "," + k + ")");
+                    for (int l = 0; l < regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D().length; l++) { // glebokosc regalu
+                        System.out.println(regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D()[l]);
+                    }
+                    System.out.println();
+                }
+            }
+        }
+    }
+
+    public void wyswietlStatystykeTygodniowaSklepu(){
+        System.out.println();
+        for (int i = 0; i < regalyWSklepie.length; i++) {// ktory regal
+            if (regalyWSklepie[i].getStatystykaTygodniowa() != null) {
+                System.out.println("Numer regalu: " + i);
+                regalyWSklepie[i].getStatystykaTygodniowa().wyswietlStatystykeTygodniowa();
+                System.out.println();
+            } else System.out.println("Statystyka regalu " + i + " nie istnieje");
+        }
+    }
+
+    public void wyswietlStatystykeCalorocznaSklepu(){
+        System.out.println();
+        for (int i = 0; i < regalyWSklepie.length; i++) {// ktory regal
+            System.out.println("Numer regalu: " + i);
+            regalyWSklepie[i].getStatystykaCaloroczna().wyswietl();
+            System.out.println();
+        }
     }
 
     public void wczytajPierwszaDostawa() {
@@ -58,34 +95,6 @@ public class Sklep implements PodmiotTydzien, Serializable {
                     x++;
                 }
 
-            }
-        }
-    }
-
-    public void wyswietlSklep() {
-        for (int i = 0; i < regalyWSklepie.length; i++) { // ktory regal
-            for (int k = 0; k < regalyWSklepie[i].getPolkiWRegale()[0].length; k++) { // kolumny regalu
-                for (int j = 0; j < regalyWSklepie[i].getPolkiWRegale().length; j++) { // wiersze regalu
-                    for (int l = 0; l < regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D().length; l++) { // glebokosc regalu
-                        System.out.println(regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D()[l]);
-                    }
-                    System.out.println();
-                }
-            }
-        }
-    }
-
-    public void wyswietlSklepCzytelniejsze(){
-        for (int i = 0; i < regalyWSklepie.length; i++) {// ktory regal
-            System.out.println("Numer regalu:" + i);
-            for (int k = 0; k < regalyWSklepie[i].getPolkiWRegale()[0].length; k++) { // kolumny regalu
-                for (int j = 0; j < regalyWSklepie[i].getPolkiWRegale().length; j++) { // wiersze regalu
-                    System.out.println("Lokalizacja polki (" + j + "," + k + ")");
-                    for (int l = 0; l < regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D().length; l++) { // glebokosc regalu
-                        System.out.println(regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D()[l]);
-                    }
-                    System.out.println();
-                }
             }
         }
     }
@@ -164,6 +173,7 @@ public class Sklep implements PodmiotTydzien, Serializable {
             System.err.println("Błąd podczas zapisywania do pliku: " + e.getMessage());
         }
     }
+
 
     public Sklep wczytajZPliku() {
         Sklep sklep = null;

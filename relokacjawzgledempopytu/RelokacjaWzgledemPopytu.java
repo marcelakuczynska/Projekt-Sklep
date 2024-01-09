@@ -1,4 +1,4 @@
-package relokacjapopyt;
+package relokacjawzgledempopytu;
 
 import sklep.Polka;
 import statystyka.StatystykaTygodniowa;

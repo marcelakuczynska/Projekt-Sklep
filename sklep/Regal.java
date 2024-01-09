@@ -1,7 +1,7 @@
 package sklep;
 
-import relokacjapopyt.Metoda1;
-import relokacjapopyt.RelokacjaWzgledemPopytu;
+import relokacjawzgledempopytu.Metoda1;
+import relokacjawzgledempopytu.RelokacjaWzgledemPopytu;
 import statystyka.ObserwatorStatystyki;
 import statystyka.StatystykaCaloroczna;
 import statystyka.StatystykaTygodniowa;
@@ -31,22 +31,11 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
         //zwiazane z obserwatorem tygodnia
         sklep.zarejestrujObserwatora(this);
 
-        //zwiazane z obserwatorem statystyki
+        //zwiazane z obserwatorem statystyki sprzedazy
         listaObserwatorow = new ArrayList<>();
 
         //tworzenie statystyki ogolnej ktora trwa caly rok
         statystykaCaloroczna = new StatystykaCaloroczna(this);
-    }
-
-    public void ustawProdukt(Produkt produkt, int x1, int y1, int z1) {  //ustawia produkt w danym miejscu
-        if (polkiWRegale[x1][y1].getProdukty1D()[z1] != null) {
-            polkiWRegale[x1][y1].getProdukty1D()[z1] = produkt;
-
-        } else System.out.println("Na tym miejscu juz cos stoi");
-    }
-
-    public void usunProdukt(int x1,int y1,int z1) {
-        polkiWRegale[x1][y1].getProdukty1D()[z1] = null;
     }
 
     @Override
@@ -57,6 +46,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
         //wraz ze zmiana tygodnia robimy nowe statystyki tygodniowe potrzebne do relokacji
         statystykaTygodniowa = new StatystykaTygodniowa(this, polkiWRegale);
         symulacjaSprzedazy();
+        statystykaTygodniowa.generujRanking();
         relokacjaWzgledemPopytu.sposobRelokacjiWzgledemPopytu(statystykaTygodniowa, polkiWRegale);
     }
 
@@ -106,9 +96,22 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
         }
     }
 
+
+    public void ustawProdukt(Produkt produkt, int x1, int y1, int z1) {  //ustawia produkt w danym miejscu
+        if (polkiWRegale[x1][y1].getProdukty1D()[z1] != null) {
+            polkiWRegale[x1][y1].getProdukty1D()[z1] = produkt;
+
+        } else System.out.println("Na tym miejscu juz cos stoi");
+    }
+
+    public void usunProdukt(int x1,int y1,int z1) {
+        polkiWRegale[x1][y1].getProdukty1D()[z1] = null;
+    }
+
     public void relokacjaWzgledemPopytu() {
         relokacjaWzgledemPopytu.sposobRelokacjiWzgledemPopytu(statystykaTygodniowa,polkiWRegale);
     }
+
 
     @Override
     public void zarejestrujObserwatora(ObserwatorStatystyki obserwatorStatystyki) {
@@ -126,6 +129,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
             obserwator.aktualizacja(polka, cenaProduktu);
         }
     }
+
 
     //GETTERY
 

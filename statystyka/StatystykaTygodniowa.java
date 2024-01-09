@@ -7,11 +7,12 @@ import java.io.Serializable;
 import java.util.*;
 
 public class StatystykaTygodniowa implements ObserwatorStatystyki, Serializable {
-    //przechowujemy w hashmapie polke i ilosc sprzedanych produktow dla niej
     private Map<Polka, WartosciSprzedazy> wynikSprzedazyProduktu;
+    private Map<Polka, Integer> rankingZysku;
 
     public StatystykaTygodniowa(PodmiotStatystyki produkty, Polka[][] regal) {
         produkty.zarejestrujObserwatora(this);
+        this.rankingZysku = new HashMap<>();
         this.wynikSprzedazyProduktu = inicjalizacjaHashMapyProduktamiCalegoRegalu(regal);
     }
 
@@ -27,17 +28,24 @@ public class StatystykaTygodniowa implements ObserwatorStatystyki, Serializable 
     }
 
     public void wyswietlStatystykeTygodniowa() {
-        System.out.println("Ilosc sprzedanych produktow:");
-        for (Map.Entry<Polka, WartosciSprzedazy> entry : wynikSprzedazyProduktu.entrySet()) {
-            Polka polka = entry.getKey();
-            WartosciSprzedazy wartosciSprzedazy = entry.getValue();
-            System.out.println(polka.getTypProduktu() + " " + polka.getProducent() + ": " + wartosciSprzedazy.getZysk() + "zl, " + wartosciSprzedazy.getIloscSprzedanych());
+        if (rankingZysku != null) {
+            System.out.println("Statystyka tygodniowa:");
+            for (Map.Entry<Polka, WartosciSprzedazy> entry : wynikSprzedazyProduktu.entrySet()) {
+                Polka polka = entry.getKey();
+                WartosciSprzedazy wartosciSprzedazy = entry.getValue();
+                int rank = rankingZysku.get(polka);
+
+                String sformatowane = String.format("%-20s %-20s  Zysk: %-10.2f  Ilość sprzedanych: %-5d  Ranking: %d",
+                        polka.getTypProduktu(), polka.getProducent(), wartosciSprzedazy.getZysk(),
+                        wartosciSprzedazy.getIloscSprzedanych(), rank);
+
+                System.out.println(sformatowane);
+            }
         }
     }
 
-    public Map<Polka, Integer> generujRanking() {
+    public void generujRanking() {
         //TODO: podzielic ta metode bo troche za duza ale poki nie wiadomo co robimy to zostaje
-        Map<Polka, Integer> rankingZysku = new HashMap<>();
 
         //w metodzie generujemy ranking dla kazdego "produktu" czyli polki z produktami o tej samej nazwie, firmie i cenie
 
@@ -58,7 +66,7 @@ public class StatystykaTygodniowa implements ObserwatorStatystyki, Serializable 
             zyskValues.sort(Collections.reverseOrder());
 
             // Przydzielamy ranking na podstawie zysku, 1 dla najlepiej sprzedajacych, 2 dla srodkowych, 3 dla najgorzej
-            // W przypadku takiego samego zysku dostaja ten sam wynik - to  mozemy poprawic w razie czego ale nie mam pomyslu jak
+            // W przypadku takiego samego zysku dostaja ten sam wynik
             int rank;
             double zysk = wartosciSprzedazy.getZysk();
 
@@ -72,8 +80,6 @@ public class StatystykaTygodniowa implements ObserwatorStatystyki, Serializable 
 
             rankingZysku.put(polka, rank);
         }
-
-        return rankingZysku;
     }
     public Map<Polka, WartosciSprzedazy> inicjalizacjaHashMapyProduktamiCalegoRegalu(Polka[][] keyArray) {
         Map<Polka, WartosciSprzedazy> hashMap = new HashMap<>();
@@ -91,8 +97,8 @@ public class StatystykaTygodniowa implements ObserwatorStatystyki, Serializable 
         return wynikSprzedazyProduktu;
     }
 
-    public void setWynikSprzedazyProduktu(Map<Polka, WartosciSprzedazy> wynikSprzedazyProduktu) {
-        this.wynikSprzedazyProduktu = wynikSprzedazyProduktu;
+    public Map<Polka, Integer> getRankingZysku() {
+        return rankingZysku;
     }
 
     public class WartosciSprzedazy implements Serializable {
