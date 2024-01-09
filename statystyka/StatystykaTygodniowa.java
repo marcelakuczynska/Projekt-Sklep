@@ -23,11 +23,10 @@ public class StatystykaTygodniowa implements ObserwatorStatystyki, Serializable 
         odczytaneWartosci.iloscSprzedanych++;
         odczytaneWartosci.zysk += cena;;
 
-        wynikSprzedazyProduktu.put(polka, wynikSprzedazyProduktu.getOrDefault(polka, odczytaneWartosci) );
+        wynikSprzedazyProduktu.put(polka, wynikSprzedazyProduktu.getOrDefault(polka, odczytaneWartosci));
     }
 
-
-    public void wyswietl() {
+    public void wyswietlStatystykeTygodniowa() {
         System.out.println("Ilosc sprzedanych produktow:");
         for (Map.Entry<Polka, WartosciSprzedazy> entry : wynikSprzedazyProduktu.entrySet()) {
             Polka polka = entry.getKey();

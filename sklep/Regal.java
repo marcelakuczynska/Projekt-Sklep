@@ -57,10 +57,10 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
         //wraz ze zmiana tygodnia robimy nowe statystyki tygodniowe potrzebne do relokacji
         statystykaTygodniowa = new StatystykaTygodniowa(this, polkiWRegale);
         symulacjaSprzedazy();
+        relokacjaWzgledemPopytu.sposobRelokacjiWzgledemPopytu(statystykaTygodniowa, polkiWRegale);
     }
 
     public void zmianaDaty () { // odpane przez za pomocą Obserwatora po zmianie tygodnia!!!
-        // bardzo wazne zeby nigdzie nie bylo dwoch takich samych produktow
         Produkt[] getProdukty1D;
         for (int i = 0; i < polkiWRegale.length; i++) {
             for (int j = 0; j < polkiWRegale[i].length; j++) {

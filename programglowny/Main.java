@@ -10,10 +10,6 @@ public class Main {
     public static void main(String[] args) {
         Sklep test = new Sklep();
         test.wczytajPierwszaDostawa();
-        System.out.print(test);
-//		test.wyswietlSklep();
-
-
 
         test.uplywCzasu();
         test.wyswietlSklepCzytelniejsze();
@@ -28,13 +24,6 @@ public class Main {
 //		//to na szybko do wyswietlenia rankingu, normalnie mogloby byc metoda w statystykach xD
         for (Map.Entry<Polka, Integer> entry : finalRanking.entrySet()) {
             System.out.println(entry.getKey().getTypProduktu() + " " + entry.getKey().getProducent() + " | pozycja: " + entry.getValue());
-        }
-
-
-
-
-        for(Regal regal : test.getRegalyWSklepie()){
-            regal.relokacjaWzgledemPopytu();
         }
 
 
