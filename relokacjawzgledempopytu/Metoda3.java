@@ -1,4 +1,4 @@
-package relokacjapopyt;
+package relokacjawzgledempopytu;
 
 import sklep.Polka;
 import statystyka.StatystykaTygodniowa;
@@ -11,7 +11,7 @@ public class Metoda3 implements RelokacjaWzgledemPopytu, Serializable {
     @Override
     public void sposobRelokacjiWzgledemPopytu(StatystykaTygodniowa statystyka, Polka[][] tablicaPolek) {
 
-        Map<Polka, Integer> wynikSprzedazyProduktu = statystyka.generujRanking();
+        Map<Polka, Integer> wynikSprzedazyProduktu = statystyka.getRankingZysku();
 
         final int maxPopyt = 0, midPopyt = 2;
 

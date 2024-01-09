@@ -22,11 +22,15 @@ public class StatystykaCaloroczna implements ObserwatorStatystyki, Serializable 
     }
 
     public void wyswietl(){
-        System.out.println("Statystyka ogolna:");
+        System.out.println("Statystyka ogólna:");
+
         for (Map.Entry<String, Double> entry : statystykiOgolne.entrySet()) {
             String nazwa = entry.getKey();
             double zysk = entry.getValue();
-            System.out.println(nazwa + " " + zysk + " zl");
+
+            String sformatowane = String.format("%-20s Zysk: %.2f zł", nazwa, zysk);
+            System.out.println(sformatowane);
         }
+
     }
 }
