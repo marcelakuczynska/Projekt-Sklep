@@ -1,10 +1,6 @@
 package sklep;
 
-import RelokacjaSezonowa.RelokacjaSezonowa;
-import RelokacjaSezonowa.Wiosna;
-import RelokacjaSezonowa.Lato;
-import RelokacjaSezonowa.Jesien;
-import RelokacjaSezonowa.Zima;
+import relokacjasezonowa.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -67,7 +63,7 @@ public class Sklep implements PodmiotTydzien, Serializable {
                             return;
                         }
                     }
-                    regalyWSklepie[i].getPolkiWRegale()[j][k].wczytajNazwy();
+                    regalyWSklepie[i].getPolkiWRegale()[j][k].wczytajWartosciBazowePolki();
                     x++;
                 }
 
@@ -116,7 +112,7 @@ public class Sklep implements PodmiotTydzien, Serializable {
                     dostawa[x][0]=regalyWSklepie[i].getPolkiWRegale()[j][k].getTypProduktu();
                     dostawa[x][1]=regalyWSklepie[i].getPolkiWRegale()[j][k].getProducent();
                     dostawa[x][2]=regalyWSklepie[i].getPolkiWRegale()[j][k].getDataWaznosci();
-                    dostawa[x][3]=regalyWSklepie[i].getPolkiWRegale()[j][k].getCena();
+                    dostawa[x][3]=regalyWSklepie[i].getPolkiWRegale()[j][k].getCenaBazowa();
                     dostawa[x][4]=String.format("%s%04d", (String)dostawa[x][1], ktoryTydzien);
 
                     for (int l = 0; l < regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D().length; l++) { // glebokosc regalu
@@ -147,25 +143,24 @@ public class Sklep implements PodmiotTydzien, Serializable {
         this.RS= strategia;
     }
 
-    public void ZrelokujSezonowo(int ktoryTydzien,Sklep sklep){
-        if(ktoryTydzien>=10 && ktoryTydzien<=22){ //Wiosna
+    public void ZrelokujSezonowo(int ktoryTydzien, Sklep sklep){
+        if (ktoryTydzien>=10 && ktoryTydzien<=22) { //Wiosna
            ustawRelokacjeSezonowa(new Wiosna());
            RS.SposobRelokacjiSezonowej(sklep);
         }
-        if(ktoryTydzien>=23 && ktoryTydzien<=35){ //Lato
+        if (ktoryTydzien>=23 && ktoryTydzien<=35) { //Lato
             ustawRelokacjeSezonowa(new Lato());
             RS.SposobRelokacjiSezonowej(sklep);
         }
-        if(ktoryTydzien>=36 && ktoryTydzien<=48){ //Jesien
+        if (ktoryTydzien>=36 && ktoryTydzien<=48) { //Jesien
             ustawRelokacjeSezonowa(new Jesien());
             RS.SposobRelokacjiSezonowej(sklep);
         }
-        if((ktoryTydzien>=1 && ktoryTydzien<=9) || (ktoryTydzien>=49 && ktoryTydzien<=52)){ //Zima
+        if ((ktoryTydzien>=1 && ktoryTydzien<=9) || (ktoryTydzien>=49 && ktoryTydzien<=52)) { //Zima
            ustawRelokacjeSezonowa(new Zima());
            RS.SposobRelokacjiSezonowej(sklep);
-        }else{
+        } else {
             System.out.println("Wprowadz poprawny numer tygodnia!");
-            return;
         }
     }
 

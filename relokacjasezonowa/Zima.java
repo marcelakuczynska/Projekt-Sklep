@@ -1,4 +1,4 @@
-package RelokacjaSezonowa;
+package relokacjasezonowa;
 
 import sklep.Regal;
 import sklep.Sklep;

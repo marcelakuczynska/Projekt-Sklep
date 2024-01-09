@@ -1,4 +1,4 @@
-package RelokacjaSezonowa;
+package relokacjasezonowa;
 //owoceWarzywa, napoje, nabial, mięso
 import sklep.Regal;
 import sklep.Sklep;

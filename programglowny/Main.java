@@ -1,6 +1,6 @@
 package programglowny;
 
-import Relokacja.RelokacjaWzgledemPopytu.*;
+import relokacjapopyt.Metoda1;
 import sklep.Polka;
 import sklep.Regal;
 import sklep.Sklep;
@@ -44,7 +44,7 @@ public class Main {
 //		System.out.println();
 
         //ta czesc by wygodnie dzialalo dla relokacji
-        Map<Polka, Integer> finalRanking = test.getRegalyWSklepie()[0].getStatystyka().generujRanking();
+        Map<Polka, Integer> finalRanking = test.getRegalyWSklepie()[0].getStatystykaTygodniowa().generujRanking();
 
         Polka polka = test.getRegalyWSklepie()[0].getPolkiWRegale()[1][1];
         int rank = finalRanking.get(polka);

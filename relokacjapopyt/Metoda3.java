@@ -1,7 +1,7 @@
-package Relokacja.RelokacjaWzgledemPopytu;
+package relokacjapopyt;
 
 import sklep.Polka;
-import statystyka.Statystyka;
+import statystyka.StatystykaTygodniowa;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -9,7 +9,7 @@ import java.util.Map;
 public class Metoda3 implements RelokacjaWzgledemPopytu, Serializable {
 //  Kolejnosc: gora, dol, srodek
     @Override
-    public void sposobRelokacjiWzgledemPopytu(Statystyka statystyka, Polka[][] tablicaPolek) {
+    public void sposobRelokacjiWzgledemPopytu(StatystykaTygodniowa statystyka, Polka[][] tablicaPolek) {
 
         Map<Polka, Integer> wynikSprzedazyProduktu = statystyka.generujRanking();
 

@@ -7,18 +7,18 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StatystykaOgolna implements ObserwatorStatystyki, Serializable {
-    //TODO: na razie statystyka ogolna dziala tylko na laczny zysk, moge zmienic jesli chcemy tez miec ilosc produktow
+public class StatystykaCaloroczna implements ObserwatorStatystyki, Serializable {
+    //statystyka ogolna podsumowuje zysk ze sprzedazy produktow na regale
+    private Map<String, Double> statystykiOgolne; //<typProduktu, zysk>
 
-    private Map<String, Double> statystykiOgolne;
-    public StatystykaOgolna(PodmiotStatystyki podmiotStatystyki) {
+    public StatystykaCaloroczna(PodmiotStatystyki podmiotStatystyki) {
         podmiotStatystyki.zarejestrujObserwatora(this);
         this.statystykiOgolne = new HashMap<>();
     }
 
     @Override
-    public void aktualizacja(Polka polka) {
-        statystykiOgolne.put(polka.getTypProduktu(), statystykiOgolne.getOrDefault(polka.getTypProduktu(), 0.0)+ polka.getCena());
+    public void aktualizacja(Polka polka, double cena) {
+        statystykiOgolne.put(polka.getTypProduktu(), statystykiOgolne.getOrDefault(polka.getTypProduktu(), 0.0)+ cena);
     }
 
     public void wyswietl(){

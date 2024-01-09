@@ -1,4 +1,4 @@
-package Relokacja.RelokacjaWzgledemPopytu;
+package relokacjapopyt;
 
 import sklep.Polka;
 

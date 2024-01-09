@@ -1,9 +1,9 @@
 package sklep;
 
-import Relokacja.RelokacjaWzgledemPopytu.*;
+import relokacjapopyt.RelokacjaWzgledemPopytu;
 import statystyka.ObserwatorStatystyki;
-import statystyka.Statystyka;
-import statystyka.StatystykaOgolna;
+import statystyka.StatystykaCaloroczna;
+import statystyka.StatystykaTygodniowa;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,8 +14,8 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
     private final int wysokosc = 3;
     private Polka[][] polkiWRegale;
     private ArrayList<ObserwatorStatystyki> listaObserwatorow;
-    private Statystyka statystyka; //statystyka do relokacji, zmieniana co tydzien?
-    private StatystykaOgolna statystykaOgolna;
+    private StatystykaTygodniowa statystykaTygodniowa;
+    private StatystykaCaloroczna statystykaCaloroczna;
     private RelokacjaWzgledemPopytu relokacjaWzgledemPopytu;
 
     public Regal(PodmiotTydzien sklep) {
@@ -33,17 +33,13 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
         listaObserwatorow = new ArrayList<>();
 
         //tworzenie statystyki ogolnej ktora trwa caly rok
-        statystykaOgolna = new StatystykaOgolna(this);
+        statystykaCaloroczna = new StatystykaCaloroczna(this);
     }
 
     public void ustawProdukt(Produkt produkt, int x1, int y1, int z1) {  //ustawia produkt w danym miejscu
         if (polkiWRegale[x1][y1].getProdukty1D()[z1] != null) {
             polkiWRegale[x1][y1].getProdukty1D()[z1] = produkt;
 
-            // tu cos nowego wlasnie NIE WIEM JAK TO ZADZIALA, JAK DZIALA ZLE TO SIE COFAMY DO TABLICY NA RAZIE - jak szare to nie dziala xD
-            /* produktInfoMap.computeIfAbsent(x1, HashMap::new)
-                    .computeIfAbsent(y1, HashMap::new)
-                    .put(z1, produkt); */
         } else System.out.println("Na tym miejscu juz cos stoi");
     }
 
@@ -57,7 +53,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
         // //ale chyba nie bedzie potrzebne bo relokacja sezonowa ma przesuwac w sklepie regaly?
         zmianaDaty();
         //wraz ze zmiana tygodnia robimy nowe statystyki tygodniowe potrzebne do relokacji
-        statystyka = new Statystyka(this, polkiWRegale);
+        statystykaTygodniowa = new StatystykaTygodniowa(this, polkiWRegale);
         symulacjaSprzedazy();
     }
 
@@ -82,6 +78,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
     public void symulacjaSprzedazy () {    //losowa sprzedaż produktów + też się odpala obserwatorem
         Random gen = new Random();
         Produkt[] getProdukty1D;
+        //TODO: uporzadkowac
         for(int i = 0; i < polkiWRegale.length; i++) {
             for (int j = 0; j < polkiWRegale[i].length; j++) {
                 //dostajemy sie do klasy polki i tam bedziemy iterowac po glebokosci
@@ -90,12 +87,12 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
                     for (int k = 0; k < getProdukty1D.length; k++) {
                         if (getProdukty1D[k] != null) {
                             if (getProdukty1D[k].getCzyPromocja()) {
-                                powiadomObserwatorow(polkiWRegale[i][j]);
+                                powiadomObserwatorow(polkiWRegale[i][j], getProdukty1D[k].getCena());
 
                                 getProdukty1D[k] = null;
                                 //powiadamia obserwatorow i przekazuje im CALA POLKE
                             } else if (gen.nextInt(3) + 1 == 1) {//od 1 do 3
-                                powiadomObserwatorow(polkiWRegale[i][j]);
+                                powiadomObserwatorow(polkiWRegale[i][j], getProdukty1D[k].getCena());
 
                                 getProdukty1D[k] = null;
                             }
@@ -109,7 +106,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
     }
 
     public void relokacjaWzgledemPopytu() {
-        relokacjaWzgledemPopytu.sposobRelokacjiWzgledemPopytu(statystyka,polkiWRegale);
+        relokacjaWzgledemPopytu.sposobRelokacjiWzgledemPopytu(statystykaTygodniowa,polkiWRegale);
     }
 
     @Override
@@ -123,9 +120,9 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
     }
 
     @Override
-    public void powiadomObserwatorow(Polka polka) {
+    public void powiadomObserwatorow(Polka polka, double cenaProduktu) {
         for (ObserwatorStatystyki obserwator : listaObserwatorow){
-            obserwator.aktualizacja(polka);
+            obserwator.aktualizacja(polka, cenaProduktu);
         }
     }
 
@@ -142,12 +139,12 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
         return polkiWRegale;
     }
 
-    public Statystyka getStatystyka() {
-        return statystyka;
+    public StatystykaTygodniowa getStatystykaTygodniowa() {
+        return statystykaTygodniowa;
     }
 
-    public StatystykaOgolna getStatystykaOgolna() {
-        return statystykaOgolna;
+    public StatystykaCaloroczna getStatystykaCaloroczna() {
+        return statystykaCaloroczna;
     }
 
     //SETTERY
