@@ -9,25 +9,26 @@ import java.awt.event.WindowEvent;
 
 public class Ramka extends JFrame {
 
-    public Ramka(){
+    private Sklep sklep;
 
-        JFrame ramka = new JFrame("Projekt Sklep");
-        ramka.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public Ramka(){;
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        sklep = new Sklep();
 
-        ramka.setSize(600, 500);
+        setSize(600, 500);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screenSize.width - ramka.getWidth()) / 2;
-        int y = (screenSize.height - ramka.getHeight()) / 2;
-        ramka.setLocation(x, y);
+        int x = (screenSize.width - getWidth()) / 2;
+        int y = (screenSize.height - getHeight()) / 2;
+        setLocation(x, y);
 
 
-        Menu menu = new Menu();
-        ramka.setJMenuBar(menu);
-        menu.setVisible(true);
+        Menu menu = new Menu(this, sklep);
+        setJMenuBar(menu);
+        setVisible(true);
 
-        ramka.addWindowListener(new ConfirmCloseListener());
-        ramka.setVisible(true);
 
+        addWindowListener(new ConfirmCloseListener());
+        setVisible(true);
     }
 
 
@@ -57,5 +58,4 @@ public class Ramka extends JFrame {
             zamknijRamke();
         }
     }
-
 }

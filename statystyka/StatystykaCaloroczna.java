@@ -31,6 +31,5 @@ public class StatystykaCaloroczna implements ObserwatorStatystyki, Serializable 
             String sformatowane = String.format("%-20s Zysk: %.2f zł", nazwa, zysk);
             System.out.println(sformatowane);
         }
-
     }
 }
