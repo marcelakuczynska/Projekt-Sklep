@@ -6,7 +6,7 @@ public class Dostawa implements Serializable {
     private Object[][] dostawa = new Object[60][6];
 
     public Dostawa() {
-        Object [][] dostawa = {
+        Object[][] dostawa = {
                 {"Chleb", "Marfex", 3, 3.50, "Marfex0000", 10},
                 {"Chleb", "Złoty Kłos", 4, 4.00, "Złoty Kłos0000", 10},
                 {"Chleb", "Piekarnia Tradycyjna", 5, 3.80, "Piekarnia Tradycyjna0000", 10},

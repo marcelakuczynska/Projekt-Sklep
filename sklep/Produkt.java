@@ -22,12 +22,12 @@ public class Produkt implements Serializable {
         this.wartoscPromocji = wartoscPromocji;
     }
 
-    public void zrobPromocje (double wartoscPromocji) { //ustalenie promocji
+    public void zrobPromocje(double wartoscPromocji) { //ustalenie promocji
         czyPromocja = true;
         this.wartoscPromocji = wartoscPromocji;
     }
 
-    public void zmianaDatyWaznosci () {
+    public void zmianaDatyWaznosci() {
         this.dataWaznosci--;
     }
 

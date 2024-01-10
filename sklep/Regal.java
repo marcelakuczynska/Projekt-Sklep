@@ -132,7 +132,6 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
 
 
     //GETTERY
-
     public int getSzerokosc() {
         return szerokosc;
     }
