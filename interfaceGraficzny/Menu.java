@@ -104,14 +104,22 @@ public class Menu extends JMenuBar {
     public class ReakcjaTydzien extends ReakcjaNaWyswietlanie {
         @Override
         protected void wyswietlNaPanelu() {
+            JPanel panelTytulu = new JPanel();
+            panelTytulu.add(new JLabel("Tydzien " + sklep.getKtoryTydzien()));
+            ramka.add(panelTytulu, BorderLayout.NORTH);
             sklep.uplywCzasu();
         }
     }
 
     public class ReakcjaOdczyt extends ReakcjaNaWyswietlanie {
+
         @Override
         protected void wyswietlNaPanelu() {
             // Implementacja dla odczytu
+            JPanel panelTytulu = new JPanel();
+            panelTytulu.add(new JLabel("Plik wczytano z pliku"));
+            ramka.add(panelTytulu, BorderLayout.NORTH);
+            sklep = sklep.wczytajZPliku();
         }
     }
 
@@ -119,6 +127,10 @@ public class Menu extends JMenuBar {
         @Override
         protected void wyswietlNaPanelu() {
             // Implementacja dla zapisu
+            JPanel panelTytulu = new JPanel();
+            panelTytulu.add(new JLabel("Plik zapisano do pliku"));
+            ramka.add(panelTytulu, BorderLayout.NORTH);
+            sklep.zapiszDoPliku();
         }
     }
 }
