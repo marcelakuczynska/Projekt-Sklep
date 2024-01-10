@@ -2,8 +2,6 @@ package programglowny;
 
 import sklep.Sklep;
 
-import javax.swing.*;
-
 public class Main {
     public static void main(String[] args) {
         Sklep test = new Sklep();
@@ -12,16 +10,16 @@ public class Main {
         test.uplywCzasu();
         test.uplywCzasu();
 
-
         test.wyswietlStatystykeTygodniowaSklepu();
         test.wyswietlStatystykeCalorocznaSklepu();
 
-
-        /* TEST SERIALIZACJI
+        /* //TEST SERIALIZACJI
 
         test.zapiszDoPliku();
-        test.ZrelokujSezonowo(68, test);
+        test.zrelokujSezonowo();
         test.wczytajZPliku().wyswietlSklep();
+
+        test.wyswietlStatystykeCalorocznaSklepu();
 
          */
     }

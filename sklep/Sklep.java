@@ -133,7 +133,6 @@ public class Sklep implements PodmiotTydzien, Serializable {
                             );
                         }
                     }
-
                     dostawa[x][5]=ileBrakuje;
                     x++;
                 }
@@ -147,20 +146,20 @@ public class Sklep implements PodmiotTydzien, Serializable {
         this.relokacjaSezonowa = strategia;
     }
 
-    public void zrelokujSezonowo(){
-        if (ktoryTydzien>=10 && ktoryTydzien<=22) { //Wiosna
+    public void zrelokujSezonowo() {
+        if (ktoryTydzien >= 10 && ktoryTydzien <= 22) { //Wiosna
            ustawRelokacjeSezonowa(new Wiosna());
            relokacjaSezonowa.SposobRelokacjiSezonowej(this);
         }
-        if (ktoryTydzien>=23 && ktoryTydzien<=35) { //Lato
+        if (ktoryTydzien >= 23 && ktoryTydzien <= 35) { //Lato
             ustawRelokacjeSezonowa(new Lato());
             relokacjaSezonowa.SposobRelokacjiSezonowej(this);
         }
-        if (ktoryTydzien>=36 && ktoryTydzien<=48) { //Jesien
+        if (ktoryTydzien >= 36 && ktoryTydzien <= 48) { //Jesien
             ustawRelokacjeSezonowa(new Jesien());
             relokacjaSezonowa.SposobRelokacjiSezonowej(this);
         }
-        if ((ktoryTydzien>=1 && ktoryTydzien<=9) || (ktoryTydzien>=49 && ktoryTydzien<=52)) { //Zima
+        if ((ktoryTydzien >= 1 && ktoryTydzien <= 9) || (ktoryTydzien >= 49 && ktoryTydzien <= 52)) { //Zima
            ustawRelokacjeSezonowa(new Zima());
            relokacjaSezonowa.SposobRelokacjiSezonowej(this);
         } else {
@@ -172,18 +171,17 @@ public class Sklep implements PodmiotTydzien, Serializable {
     public void zapiszDoPliku() {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("Sklep.ser"))) {
             outputStream.writeObject(this);
-            System.out.println("Obiekt zapisany do pliku: " + "Sklep.ser");
+            System.out.println("Stan sklepu zapisany do pliku.\n");
         } catch (IOException e) {
             System.err.println("Błąd podczas zapisywania do pliku: " + e.getMessage());
         }
     }
 
-
     public Sklep wczytajZPliku() {
         Sklep sklep = null;
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("Sklep.ser"))) {
             sklep = (Sklep) inputStream.readObject();
-            System.out.println("Obiekt wczytany z pliku: " + "Sklep.ser");
+            System.out.println("Stan sklepu wczytany z pliku.\n");
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Błąd podczas wczytywania z pliku: " + e.getMessage());
         }
@@ -237,6 +235,7 @@ public class Sklep implements PodmiotTydzien, Serializable {
                 '}';
     }
 
+    //GETTERY
     public Regal[] getRegalyWSklepie() {
         return regalyWSklepie;
     }
