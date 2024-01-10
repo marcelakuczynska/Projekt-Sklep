@@ -4,28 +4,24 @@ public class WyswietlanieTymczasowo {
 
     // to tymczasowo zeby sprawdzic czy dziala w interfejsie graficznym, pozniej to jakos uporzadkuje
     public static String wyswietlStatystykeCalorocznaSklepuString(Sklep sklep) {
-        StringBuilder statystykaCaloroczna = new StringBuilder();
-
-        statystykaCaloroczna.append("\n");
+        StringBuilder result = new StringBuilder("\n");
 
         for (int i = 0; i < sklep.getRegalyWSklepie().length; i++) {
-            statystykaCaloroczna.append("Numer regalu: ").append(i).append("\n");
-            statystykaCaloroczna.append(sklep.getRegalyWSklepie()[i].getStatystykaCaloroczna().toString()).append("\n\n");
+            result.append("Numer regalu: ").append(i).append("\n");
+            result.append(sklep.getRegalyWSklepie()[i].getStatystykaCaloroczna().wyswietlString()).append("\n\n");
         }
 
-        return statystykaCaloroczna.toString();
+        return result.toString();
     }
 
 
     public static String wyswietlStatystykeTygodniowaSklepuString(Sklep sklep) {
-        StringBuilder result = new StringBuilder();
-
-        result.append("\n");
+        StringBuilder result = new StringBuilder("\n");
 
         for (int i = 0; i < sklep.getRegalyWSklepie().length; i++) {
             if (sklep.getRegalyWSklepie()[i].getStatystykaTygodniowa() != null) {
                 result.append("Numer regalu: ").append(i).append("\n");
-                result.append(sklep.getRegalyWSklepie()[i].getStatystykaTygodniowa().toString()).append("\n\n");
+                result.append(sklep.getRegalyWSklepie()[i].getStatystykaTygodniowa().wyswietlStatystykeTygodniowaString()).append("\n\n");
             } else {
                 result.append("Statystyka regalu ").append(i).append(" nie istnieje\n");
             }

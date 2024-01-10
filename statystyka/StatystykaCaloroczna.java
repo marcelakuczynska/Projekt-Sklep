@@ -32,4 +32,18 @@ public class StatystykaCaloroczna implements ObserwatorStatystyki, Serializable 
             System.out.println(sformatowane);
         }
     }
+    public String wyswietlString() {
+        StringBuilder result = new StringBuilder("Statystyka ogólna:\n");
+
+        for (Map.Entry<String, Double> entry : statystykiOgolne.entrySet()) {
+            String nazwa = entry.getKey();
+            double zysk = entry.getValue();
+
+            String sformatowane = String.format("%-20s Zysk: %.2f zł\n", nazwa, zysk);
+            result.append(sformatowane);
+        }
+
+        return result.toString();
+    }
+
 }

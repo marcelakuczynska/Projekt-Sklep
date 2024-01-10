@@ -59,7 +59,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
                     for (int k = 0; k < getProdukty1D.length; k++) {
                         if (getProdukty1D[k] != null)
                             getProdukty1D[k].zmianaDatyWaznosci();
-                        if(getProdukty1D[k].getDataWaznosci() == 1)
+                        if (getProdukty1D[k].getDataWaznosci() == 1)
                             getProdukty1D[k].zrobPromocje(0.5);
                     }
                 }

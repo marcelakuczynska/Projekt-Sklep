@@ -44,6 +44,29 @@ public class StatystykaTygodniowa implements ObserwatorStatystyki, Serializable 
         }
     }
 
+    public String wyswietlStatystykeTygodniowaString() {
+        StringBuilder result = new StringBuilder();
+
+        if (rankingZysku != null) {
+            result.append("Statystyka tygodniowa:\n");
+
+            for (Map.Entry<Polka, WartosciSprzedazy> entry : wynikSprzedazyProduktu.entrySet()) {
+                Polka polka = entry.getKey();
+                WartosciSprzedazy wartosciSprzedazy = entry.getValue();
+                int rank = rankingZysku.get(polka);
+
+                String sformatowane = String.format("%-20s %-20s  Zysk: %-10.2f  Ilość sprzedanych: %-5d  Ranking: %d\n",
+                        polka.getTypProduktu(), polka.getProducent(), wartosciSprzedazy.getZysk(),
+                        wartosciSprzedazy.getIloscSprzedanych(), rank);
+
+                result.append(sformatowane);
+            }
+        }
+
+        return result.toString();
+    }
+
+
     public void generujRanking() {
         //TODO: podzielic ta metode bo troche za duza ale poki nie wiadomo co robimy to zostaje
 

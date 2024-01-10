@@ -1,6 +1,10 @@
 package sklep;
 
 import relokacjasezonowa.*;
+import relokacjawzgledempopytu.Metoda1;
+import relokacjawzgledempopytu.Metoda2;
+import relokacjawzgledempopytu.Metoda3;
+import relokacjawzgledempopytu.RelokacjaWzgledemPopytu;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -202,6 +206,26 @@ public class Sklep implements PodmiotTydzien, Serializable {
             listaObserwatorow.get(i).aktualizacja(ktoryTydzien);
         }
     }
+
+    public void wybierzRelokacjePopytowa(String metoda) {
+        switch (metoda) {
+            case "Metoda 1":
+                ustawRelokacjePopytowa(new Metoda1());
+                break;
+            case "Metoda 2":
+                ustawRelokacjePopytowa(new Metoda2());
+                break;
+            case "Metoda 3":
+                ustawRelokacjePopytowa(new Metoda3());
+                break;
+        }
+    }
+    private void ustawRelokacjePopytowa(RelokacjaWzgledemPopytu relokacja) {
+        for (Regal regal : regalyWSklepie){
+            regal.setRelokacjaWzgledemPopytu(relokacja);
+        }
+    }
+
 
     @Override
     public String toString() {

@@ -1,4 +1,4 @@
-package interfaceGraficzny;
+package interfejsgraficzny;
 
 import sklep.Sklep;
 import sklep.WyswietlanieTymczasowo;
@@ -19,10 +19,12 @@ public class Menu extends JMenuBar {
         JMenu wyswietl = new JMenu("Wyswietl");
         JMenu plik = new JMenu("Plik");
         JMenu tydzien = new JMenu("Symulacja czasu");
+        JMenu algorytm = new JMenu("Wybor algorytmu");
 
         wyswietl.add(createMenuItem("Wyświetlenie stanu sklepu", new ReakcjaWywStanSkl()));
         wyswietl.add(createMenuItem("Wyświetlenie statystyk tygodniowych", new ReakcjaWysStatTyg()));
         wyswietl.add(createMenuItem("Wyświetlenie statystyk ogolnych", new ReakcjaWysStatOgol()));
+        algorytm.add(createMenuItem("Wybor algorytmu koszykowego", new ReakcjaNaWyborAlgorytmu()));
 
         plik.add(createMenuItem("Zapis stanu do pliku", new ReakcjaZapis()));
         plik.add(createMenuItem("Odczyt stanu z pliku", new ReakcjaOdczyt()));
@@ -32,6 +34,7 @@ public class Menu extends JMenuBar {
         add(wyswietl);
         add(plik);
         add(tydzien);
+        add(algorytm);
     }
 
     private JMenuItem createMenuItem(String label, ActionListener listener) {
@@ -59,12 +62,11 @@ public class Menu extends JMenuBar {
 
             // Dodanie panelu do ramki
             ramka.add(wyswietlanie, BorderLayout.CENTER);
-
             ramka.revalidate();
         }
 
-        protected void wyswietlNaPanelu() {
-
+        protected void wyswietlNaPanelu(){
+            searchResult.setCaretPosition(0);
         }
     }
 
@@ -76,6 +78,7 @@ public class Menu extends JMenuBar {
             ramka.add(panelTytulu, BorderLayout.NORTH);
 
             searchResult.setText(WyswietlanieTymczasowo.wyswietlStatystykeCalorocznaSklepuString(sklep));
+            super.wyswietlNaPanelu();
         }
     }
 
@@ -87,6 +90,7 @@ public class Menu extends JMenuBar {
             ramka.add(panelTytulu, BorderLayout.NORTH);
 
             searchResult.setText(WyswietlanieTymczasowo.wyswietlStatystykeTygodniowaSklepuString(sklep));
+            super.wyswietlNaPanelu();
         }
     }
 
@@ -98,39 +102,79 @@ public class Menu extends JMenuBar {
             ramka.add(panelTytulu, BorderLayout.NORTH);
 
             searchResult.setText(WyswietlanieTymczasowo.wyswietlSklepString(sklep));
+            super.wyswietlNaPanelu();
         }
     }
 
-    public class ReakcjaTydzien extends ReakcjaNaWyswietlanie {
+    public class ReakcjaTydzien implements ActionListener {
         @Override
-        protected void wyswietlNaPanelu() {
+        public void actionPerformed(ActionEvent e) {
+            sklep.uplywCzasu();
+
+            ramka.getContentPane().removeAll();
+            ramka.setLayout(new BorderLayout());
+
             JPanel panelTytulu = new JPanel();
             panelTytulu.add(new JLabel("Tydzien " + sklep.getKtoryTydzien()));
-            ramka.add(panelTytulu, BorderLayout.NORTH);
-            sklep.uplywCzasu();
+            ramka.add(panelTytulu, BorderLayout.CENTER);
+            ramka.revalidate();
         }
     }
 
-    public class ReakcjaOdczyt extends ReakcjaNaWyswietlanie {
-
+    public class ReakcjaOdczyt implements ActionListener {
         @Override
-        protected void wyswietlNaPanelu() {
-            // Implementacja dla odczytu
+        public void actionPerformed(ActionEvent e) {
+            ramka.getContentPane().removeAll();
+            ramka.setLayout(new BorderLayout());
+
             JPanel panelTytulu = new JPanel();
-            panelTytulu.add(new JLabel("Plik wczytano z pliku"));
-            ramka.add(panelTytulu, BorderLayout.NORTH);
+            panelTytulu.add(new JLabel("Wczytano sklep z pliku"));
+            ramka.add(panelTytulu, BorderLayout.CENTER);
             sklep = sklep.wczytajZPliku();
+            ramka.revalidate();
         }
     }
 
-    public class ReakcjaZapis extends ReakcjaNaWyswietlanie {
+    public class ReakcjaZapis implements ActionListener {
         @Override
-        protected void wyswietlNaPanelu() {
-            // Implementacja dla zapisu
+        public void actionPerformed(ActionEvent e) {
+            sklep.zapiszDoPliku();
+
+            ramka.getContentPane().removeAll();
+            ramka.setLayout(new BorderLayout());
+
             JPanel panelTytulu = new JPanel();
             panelTytulu.add(new JLabel("Plik zapisano do pliku"));
-            ramka.add(panelTytulu, BorderLayout.NORTH);
-            sklep.zapiszDoPliku();
+
+            ramka.add(panelTytulu, BorderLayout.CENTER);
+            ramka.revalidate();
+        }
+    }
+
+    public class ReakcjaNaWyborAlgorytmu implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ramka.getContentPane().removeAll();
+            ramka.setLayout(new BorderLayout());
+            String[] metody = {"Metoda 1", "Metoda 2", "Metoda 3"};
+
+            JPanel panel = new JPanel();
+            JComboBox comboBox = new JComboBox<>(metody);
+            JLabel selectedMethodLabel = new JLabel("Wybrana metoda: ");
+
+            comboBox.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String wybranaMetoda = (String) comboBox.getSelectedItem();
+                    selectedMethodLabel.setText("Wybrana metoda: " + wybranaMetoda);
+                    sklep.wybierzRelokacjePopytowa(wybranaMetoda);
+                }
+            });
+
+            panel.add(comboBox);
+            panel.add(selectedMethodLabel);
+            ramka.add(panel);
+            ramka.revalidate();
         }
     }
 }

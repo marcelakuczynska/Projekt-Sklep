@@ -1,4 +1,4 @@
-package interfaceGraficzny;
+package interfejsgraficzny;
 
 import sklep.Sklep;
 
@@ -12,10 +12,10 @@ public class Ramka extends JFrame {
     private Sklep sklep;
 
     public Ramka(){;
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         sklep = new Sklep();
 
-        setSize(600, 500);
+        setSize(1000, 650);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screenSize.width - getWidth()) / 2;
         int y = (screenSize.height - getHeight()) / 2;
@@ -26,6 +26,9 @@ public class Ramka extends JFrame {
         setJMenuBar(menu);
         setVisible(true);
 
+        UIManager.put("OptionPane.yesButtonText", "Tak");
+        UIManager.put("OptionPane.noButtonText", "Nie");
+        UIManager.put("OptionPane.cancelButtonText", "Anuluj");
 
         addWindowListener(new ConfirmCloseListener());
         setVisible(true);
@@ -35,15 +38,15 @@ public class Ramka extends JFrame {
     private void zamknijRamke() {
         int result = JOptionPane.showConfirmDialog(
                 this,
-                "Czy chcesz zapisac zmiany przed wyjsciem?",
+                "Czy chcesz zapisac stan sklepu przed wyjsciem?",
                 "Zapisz zmiany",
                 JOptionPane.YES_NO_CANCEL_OPTION);
 
         if (result == JOptionPane.YES_OPTION) {
-            //Sklep.zapiszDoPliku();
+            sklep.zapiszDoPliku();
             JOptionPane.showMessageDialog(
                     this,
-                    "Zapisano zmiany!",
+                    "Zapisano stan sklepu!",
                     "Sukces",
                     JOptionPane.INFORMATION_MESSAGE);
             dispose();
