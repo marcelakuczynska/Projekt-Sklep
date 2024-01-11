@@ -13,9 +13,9 @@ public class Metoda2 implements RelokacjaWzgledemPopytu, Serializable {
 
         Map<Polka, Integer> wynikSprzedazyProduktu = statystyka.getRankingZysku();
 
-        final int maxPopyt = 1, midPopyt = 2;
+        final int maxPopyt = 1, minPopyt = 0;
 
-        Relokuj.relokuj(tablicaPolek, wynikSprzedazyProduktu, maxPopyt, midPopyt);
+        Relokuj.relokuj(tablicaPolek, wynikSprzedazyProduktu, maxPopyt, minPopyt);
 
     }
 }
