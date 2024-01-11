@@ -46,6 +46,7 @@ public class StatystykaTygodniowa implements ObserwatorStatystyki, Serializable 
 
     public String wyswietlStatystykeTygodniowaString() {
         StringBuilder result = new StringBuilder();
+        TreeMap<Polka,WartosciSprzedazy> wynikSprzedazy = new TreeMap<>(wynikSprzedazyProduktu);
 
         if (rankingZysku != null) {
             result.append("Statystyka tygodniowa:\n");

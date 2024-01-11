@@ -2,7 +2,7 @@ package sklep;
 
 import java.io.Serializable;
 
-public class Polka implements Serializable {
+public class Polka implements Serializable,Comparable<Polka> {
     private String typProduktu;
     private String producent;
     private double cenaBazowa;
@@ -60,5 +60,10 @@ public class Polka implements Serializable {
 
     public void setProducent(String producent) {
         this.producent = producent;
+    }
+
+    @Override
+    public int compareTo(Polka polka){
+        return getTypProduktu().compareTo(polka.getTypProduktu());
     }
 }
