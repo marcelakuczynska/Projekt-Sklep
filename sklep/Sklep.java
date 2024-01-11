@@ -147,19 +147,21 @@ public class Sklep implements PodmiotTydzien, Serializable {
     }
 
     public void zrelokujSezonowo() {
-        if (ktoryTydzien >= 10 && ktoryTydzien <= 22) { //Wiosna
+        int tydzienRoku = ktoryTydzien%52+1;
+
+        if (tydzienRoku >= 10 && tydzienRoku <= 22) { //Wiosna
            ustawRelokacjeSezonowa(new Wiosna());
            relokacjaSezonowa.SposobRelokacjiSezonowej(this);
         }
-        if (ktoryTydzien >= 23 && ktoryTydzien <= 35) { //Lato
+        else if (tydzienRoku >= 23 && tydzienRoku <= 35) { //Lato
             ustawRelokacjeSezonowa(new Lato());
             relokacjaSezonowa.SposobRelokacjiSezonowej(this);
         }
-        if (ktoryTydzien >= 36 && ktoryTydzien <= 48) { //Jesien
+        else if (tydzienRoku >= 36 && tydzienRoku <= 48) { //Jesien
             ustawRelokacjeSezonowa(new Jesien());
             relokacjaSezonowa.SposobRelokacjiSezonowej(this);
         }
-        if ((ktoryTydzien >= 1 && ktoryTydzien <= 9) || (ktoryTydzien >= 49 && ktoryTydzien <= 52)) { //Zima
+        else if ((tydzienRoku >= 1 && tydzienRoku <= 9) || (tydzienRoku >= 49)) { //Zima
            ustawRelokacjeSezonowa(new Zima());
            relokacjaSezonowa.SposobRelokacjiSezonowej(this);
         } else {
