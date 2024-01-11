@@ -7,17 +7,17 @@ public class Produkt implements Serializable {
     private String producent; // nazwa firmy (rozróżnienie produktów tego samego typu)
     private int dataWaznosci; // ile tygodni do końca przydatności
     private double cena;
-    private String idProduktu; // ("nazwa producenta"+ 4 cyfry)  0000, 0001, ... + 1
+    private String nrSerii; // ("nazwa producenta"+ 4 cyfry)  0000, 0001, ... + 1
     private boolean czyPromocja; // 1- jest promocja, 0- nie ma promocji
     private double wartoscPromocji; // od 0,0-1,0 (mnożnik ceny)
     //private boolean czyDoLodowki;
 
-    public Produkt(String typProduktu, String Producent, int dataWaznosci, double cena, String idProduktu, boolean czyPromocja, double wartoscPromocji) {
+    public Produkt(String typProduktu, String Producent, int dataWaznosci, double cena, String nrSerii, boolean czyPromocja, double wartoscPromocji) {
         this.typProduktu = typProduktu;
         this.dataWaznosci = dataWaznosci;
         this.cena = cena;
         this.czyPromocja = czyPromocja;
-        this.idProduktu = idProduktu;
+        this.nrSerii = nrSerii;
         this.producent = Producent;
         this.wartoscPromocji = wartoscPromocji;
     }
@@ -37,7 +37,7 @@ public class Produkt implements Serializable {
                 ", producent='" + producent + '\'' +
                 ", dataWaznosci=" + dataWaznosci +
                 ", cena=" + cena +
-                ", idProduktu='" + idProduktu + '\'' +
+                ", nrSerii='" + nrSerii + '\'' +
                 ", czyPromocja=" + czyPromocja +
                 ", wartoscPromocji=" + wartoscPromocji +
                 '}';
@@ -60,8 +60,8 @@ public class Produkt implements Serializable {
         return cena;
     }
 
-    public String getIdProduktu() {
-        return idProduktu;
+    public String getnrSerii() {
+        return nrSerii;
     }
 
     public boolean getCzyPromocja() {
@@ -89,8 +89,8 @@ public class Produkt implements Serializable {
         this.cena = cena;
     }
 
-    public void setIdProduktu(String idProduktu) {
-        this.idProduktu = idProduktu;
+    public void setnrSerii(String nrSerii) {
+        this.nrSerii = nrSerii;
     }
 
     public void setCzyPromocja(boolean czyPromocja) {
