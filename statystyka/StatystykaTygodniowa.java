@@ -46,12 +46,16 @@ public class StatystykaTygodniowa implements ObserwatorStatystyki, Serializable 
 
     public String wyswietlStatystykeTygodniowaString() {
         StringBuilder result = new StringBuilder();
-        TreeMap<Polka,WartosciSprzedazy> wynikSprzedazy = new TreeMap<>(wynikSprzedazyProduktu);
+        TreeMap<Polka, WartosciSprzedazy> wynikSprzedazy = new TreeMap<>(Comparator
+                .<Polka, String>comparing(Polka::getTypProduktu)
+                .thenComparing(Comparator.comparingDouble(polka -> wynikSprzedazyProduktu.get(polka).getZysk()).reversed()));
+
+        wynikSprzedazy.putAll(wynikSprzedazyProduktu);
 
         if (rankingZysku != null) {
             result.append("Statystyka tygodniowa:\n");
 
-            for (Map.Entry<Polka, WartosciSprzedazy> entry : wynikSprzedazyProduktu.entrySet()) {
+            for (Map.Entry<Polka, WartosciSprzedazy> entry : wynikSprzedazy.entrySet()) {
                 Polka polka = entry.getKey();
                 WartosciSprzedazy wartosciSprzedazy = entry.getValue();
                 int rank = rankingZysku.get(polka);
@@ -141,5 +145,6 @@ public class StatystykaTygodniowa implements ObserwatorStatystyki, Serializable 
         public int getIloscSprzedanych() {return iloscSprzedanych;}
 
         public double getZysk() {return zysk;}
+
     }
 }
