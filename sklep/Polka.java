@@ -1,6 +1,7 @@
 package sklep;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Polka implements Serializable,Comparable<Polka> {
     private String typProduktu;
@@ -65,5 +66,18 @@ public class Polka implements Serializable,Comparable<Polka> {
     @Override
     public int compareTo(Polka polka){
         return getTypProduktu().compareTo(polka.getTypProduktu());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Polka polka = (Polka) o;
+        return Double.compare(cenaBazowa, polka.cenaBazowa) == 0 && dataWaznosci == polka.dataWaznosci && glebokoscPolki == polka.glebokoscPolki && Objects.equals(typProduktu, polka.typProduktu) && Objects.equals(producent, polka.producent);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(typProduktu, producent, cenaBazowa, dataWaznosci, glebokoscPolki);
     }
 }

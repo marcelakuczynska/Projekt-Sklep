@@ -35,7 +35,7 @@ public class Sklep implements PodmiotTydzien, Serializable {
         powiadomObserwatorow();
         kolejneDostawy();
         zrelokujSezonowo();
-        zapiszDoPliku();
+//        zapiszDoPliku();
     }
 
     public void wyswietlSklep(){

@@ -13,7 +13,6 @@ public class Relokuj implements Serializable {
                 for(Map.Entry<Polka, Integer> entry : wynikSprzedazyProduktu.entrySet()){
                     Polka klucz = entry.getKey();
                     int wartosc = entry.getValue();
-
                     if(tablicaPolek[i][j].equals(klucz)){
                         if(wartosc == 1){
                             Polka pom = tablicaPolek[maxPopyt][j];
