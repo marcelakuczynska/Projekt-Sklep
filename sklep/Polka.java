@@ -65,6 +65,9 @@ public class Polka implements Serializable,Comparable<Polka> {
 
     @Override
     public int compareTo(Polka polka){
+        if(getTypProduktu().compareTo(polka.getTypProduktu())==0)
+            return getProducent().compareTo(polka.getProducent());
+
         return getTypProduktu().compareTo(polka.getTypProduktu());
     }
 

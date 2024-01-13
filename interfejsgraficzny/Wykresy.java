@@ -7,38 +7,64 @@ import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.KeyedValueComparator;
 import org.jfree.data.category.DefaultCategoryDataset;
+import sklep.Polka;
 import sklep.Regal;
 import sklep.Sklep;
-
+import statystyka.StatystykaTygodniowa;
 
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.List;
 
 public class Wykresy {
-    public static void wykresSprzedazy(Sklep sklep) {
+    public static void wykresSprzedazyCalorocznej(Sklep sklep) {
         Map<String, Double> dataMap = new HashMap<>();
 
         for (Regal regal : sklep.getRegalyWSklepie()) {
             dataMap.putAll(regal.getStatystykaCaloroczna().getStatystykiOgolne());
         }
 
-        // Convert HashMap data to DefaultCategoryDataset
+        List<Map.Entry<String, Double>> entryList = new ArrayList<>(dataMap.entrySet());
+
+        entryList.sort(Comparator.comparingDouble(Map.Entry::getValue));
+
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (String key : dataMap.keySet()) {
-            dataset.addValue(dataMap.get(key), "Przychód ze sprzedaży poszczególnych produktów", key);
+        for (Map.Entry<String, Double> entry : entryList) {
+            String key = entry.getKey();
+            Double value = entry.getValue();
+            dataset.addValue(value, "Przychód ze sprzedaży produktu", key);
         }
 
-        // Create a chart using JFreeChart
         JFreeChart chart = ChartFactory.createBarChart(
-                "Wykres Sprzedaży",                    // Chart title
-                "Nazwa produktu",                       // X-axis label
-                "Wartość",                          // Y-axis label
+                "Przychód ze sprzedaży poszczególnych produktów w ujęciu całorocznym",
+                "Nazwa produktu",
+                "Wartość",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+
+        wyswietlWykres(chart);
+    }
+
+    public static void wykresSprzedazyCalorocznejDlaRegalu(Regal regal) {
+        Map<String, Double> dataMap = new HashMap<>(regal.getStatystykaCaloroczna().getStatystykiOgolne());
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        for (String key : dataMap.keySet()) {
+            dataset.addValue(dataMap.get(key), "Przychód ze sprzedaży produktu", key);
+        }
+
+        JFreeChart chart = ChartFactory.createBarChart(
+                "Przychód ze sprzedaży poszczególnych produktów w ujęciu całorocznym na wybranym regale",  // Chart title
+                "Nazwa produktu",                 // X-axis label
+                "Wartość",                        // Y-axis label
                 dataset,                          // Dataset
                 PlotOrientation.VERTICAL,         // Plot orientation
                 true,                             // Show legend
@@ -46,22 +72,43 @@ public class Wykresy {
                 false                             // Configure URLs
         );
 
-        // Rotate the category labels
+        wyswietlWykres(chart);
+    }
+
+    public static void wykresSprzedazyTygodniowejDlaRegalu(Regal regal) {
+
+        Map<Polka, StatystykaTygodniowa.WartosciSprzedazy> dataMap = new TreeMap<>(regal.getStatystykaTygodniowa().getWynikSprzedazyProduktu());
+
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        for (Polka key : dataMap.keySet()) {
+            dataset.addValue(dataMap.get(key).getZysk(), "Przychód ze sprzedaży produktu", key.getTypProduktu()+" - "+key.getProducent());
+        }
+
+        JFreeChart chart = ChartFactory.createBarChart(
+                "Przychód ze sprzedaży poszczególnych produktów w ujęciu tygodniowym",                    // Chart title
+                "Nazwa produktu i producent",     // X-axis label
+                "Wartość",                        // Y-axis label
+                dataset,                          // Dataset
+                PlotOrientation.VERTICAL,         // Plot orientation
+                true,                             // Show legend
+                true,                             // Use tooltips
+                false                             // Configure URLs
+        );
+
+        wyswietlWykres(chart);
+    }
+
+    private static void wyswietlWykres(JFreeChart chart) {
         CategoryPlot plot = chart.getCategoryPlot();
         CategoryAxis domainAxis = plot.getDomainAxis();
-        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); // or your preferred rotation angle
+        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
 
-        // Display the chart in a Swing frame
         SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Bar Chart Example");
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Changed from EXIT_ON_CLOSE to DISPOSE_ON_CLOSE
+            JFrame frame = new JFrame();
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setLayout(new BorderLayout());
             frame.add(new ChartPanel(chart), BorderLayout.CENTER);
-
-            // Add a window listener to handle window closing
-            frame.addWindowListener(new WindowAdapter() {
-            });
-
             frame.setSize(1280, 960);
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
