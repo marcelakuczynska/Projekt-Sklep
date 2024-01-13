@@ -71,12 +71,25 @@ public class Menu extends JMenuBar {
     }
 
     public class ReakcjaWysStatOgol extends ReakcjaNaWyswietlanie {
+
         @Override
         protected void wyswietlNaPanelu() {
             JPanel panelTytulu = new JPanel();
             panelTytulu.add(new JLabel("Wyswietlanie statystyk ogolnych calorocznych"));
             ramka.add(panelTytulu, BorderLayout.NORTH);
 
+            // Create a button for displaying the chart
+            JButton chartButton = new JButton("Show Chart");
+            chartButton.addActionListener(e -> {
+                Wykresy.wykresSprzedazy(sklep);  // Call your chart creation method here
+            });
+
+            // Add the button to the panel
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.add(chartButton);
+            ramka.add(buttonPanel, BorderLayout.SOUTH);
+
+            // Display the search result and other components
             searchResult.setText(WyswietlanieTymczasowo.wyswietlStatystykeCalorocznaSklepuString(sklep));
             super.wyswietlNaPanelu();
         }

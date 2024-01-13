@@ -46,4 +46,11 @@ public class StatystykaCaloroczna implements ObserwatorStatystyki, Serializable 
         return result.toString();
     }
 
+    public Map<String, Double> getStatystykiOgolne() {
+        return statystykiOgolne;
+    }
+
+    public void setStatystykiOgolne(Map<String, Double> statystykiOgolne) {
+        this.statystykiOgolne = statystykiOgolne;
+    }
 }
