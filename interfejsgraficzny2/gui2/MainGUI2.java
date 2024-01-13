@@ -1,5 +1,4 @@
-package interfejsgraficzny;
-
+package interfejsgraficzny2.gui2;
 
 import interfejsgraficzny2.gui2.Frame;
 
@@ -7,7 +6,7 @@ import javax.swing.*;
 
 import static javax.swing.UIManager.setLookAndFeel;
 
-public class MainGUI {
+public class MainGUI2 {
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(() -> {
@@ -22,7 +21,9 @@ public class MainGUI {
             } catch (UnsupportedLookAndFeelException e) {
                 throw new RuntimeException(e);
             }
+
             new Frame();
+
         });
     }
 }
