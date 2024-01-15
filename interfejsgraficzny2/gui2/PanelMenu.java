@@ -1,9 +1,14 @@
 package interfejsgraficzny2.gui2;
 
+import interfejsgraficzny.Wykresy;
+import sklep.Serializacja;
+import sklep.Sklep;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import sklep.WyswietlanieTymczasowo;
 
 public class PanelMenu extends JPanel {
     private JButton button1;
@@ -17,8 +22,14 @@ public class PanelMenu extends JPanel {
 
     private int spacing = 1;
 
+    private Sklep sklep;
+
 
     public PanelMenu(Frame frame) {
+
+        Serializacja s = new Serializacja();
+         this.sklep = s.wczytajZPlikuSklep("Sklep.ser");
+
         setLayout(new GridLayout(0, 1));
         setOpaque(false);
 
@@ -42,11 +53,13 @@ public class PanelMenu extends JPanel {
 
         button2.addActionListener(e -> {
             //serializacja
+            sklep.zapiszDoPliku();
             JOptionPane.showMessageDialog(frame, "Zapisano stan sklepu", "Serializacja", JOptionPane.INFORMATION_MESSAGE);
         });
 
         button3.addActionListener(e -> {
             //serializacja
+            sklep = s.wczytajZPlikuSklep("Sklep.ser");
             JOptionPane.showMessageDialog(frame, "Odczytano stan sklepu", "Deserializacja", JOptionPane.INFORMATION_MESSAGE);
         });
 
@@ -79,8 +92,15 @@ public class PanelMenu extends JPanel {
             }
         });
 
-        button5.addActionListener(e ->{
-            //promocje
+        button6.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WyswietlanieTymczasowo w = new WyswietlanieTymczasowo();
+
+                w.wyswietlProduktyNaPromocji(sklep);
+
+            }
         });
     }
 

@@ -43,6 +43,7 @@ public class Produkt implements Serializable {
                 '}';
     }
 
+
     //GETTERY
     public String getTypProduktu() {
         return typProduktu;

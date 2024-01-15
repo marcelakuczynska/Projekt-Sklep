@@ -22,7 +22,7 @@ public class MainGUI {
             } catch (UnsupportedLookAndFeelException e) {
                 throw new RuntimeException(e);
             }
-            new Frame();
+            new Ramka();
         });
     }
 }

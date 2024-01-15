@@ -1,5 +1,11 @@
 package sklep;
 
+import org.jfree.base.modules.SubSystem;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+
 public class WyswietlanieTymczasowo {
 
     // to tymczasowo zeby sprawdzic czy dziala w interfejsie graficznym, pozniej to jakos uporzadkuje
@@ -52,4 +58,20 @@ public class WyswietlanieTymczasowo {
         return result.toString();
     }
 
+    public static String wyswietlProduktyNaPromocji(Sklep sklep){
+        JTable table = new JTable(sklep.getTabelaZDanymiPromocyjnymi());
+        ArrayList<Produkt> promocja = sklep.getProduktyNaPromocji();
+
+        System.out.println(table);
+        if(promocja.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nie ma danych", "Sklep dane", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JPanel panel = new JPanel(new BorderLayout());
+            panel.add(new JScrollPane(table), BorderLayout.CENTER);
+            JOptionPane.showMessageDialog(null, panel, "Sklep dane", JOptionPane.INFORMATION_MESSAGE);
+
+
+        }
+        return null;
+    }
 }

@@ -1,5 +1,6 @@
 package interfejsgraficzny;
 
+import sklep.Serializacja;
 import sklep.Sklep;
 import sklep.WyswietlanieTymczasowo;
 
@@ -140,7 +141,8 @@ public class Menu extends JMenuBar {
             JPanel panelTytulu = new JPanel();
             panelTytulu.add(new JLabel("Wczytano sklep z pliku"));
             ramka.add(panelTytulu, BorderLayout.CENTER);
-            sklep = sklep.wczytajZPliku();
+            Serializacja s = new Serializacja();
+            sklep = s.wczytajZPlikuSklep("Sklep.ser");
             ramka.revalidate();
         }
     }
@@ -185,6 +187,19 @@ public class Menu extends JMenuBar {
             panel.add(selectedMethodLabel);
             ramka.add(panel);
             ramka.revalidate();
+        }
+    }
+
+
+    public class ReakcjaWystawStanPromocji extends ReakcjaNaWyswietlanie {
+        @Override
+        protected void wyswietlNaPanelu() {
+            JPanel panelTytulu = new JPanel();
+            panelTytulu.add(new JLabel("Wyswietl promocje sklepu"));
+            ramka.add(panelTytulu, BorderLayout.NORTH);
+
+            searchResult.setText(WyswietlanieTymczasowo.wyswietlProduktyNaPromocji(sklep));
+            super.wyswietlNaPanelu();
         }
     }
 }

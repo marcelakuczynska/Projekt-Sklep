@@ -13,6 +13,8 @@ public class Main {
         test.wyswietlStatystykeTygodniowaSklepu();
         test.wyswietlStatystykeCalorocznaSklepu();
 
+        test.zapiszDoPliku();
+
         /* //TEST SERIALIZACJI
 
         test.zapiszDoPliku();

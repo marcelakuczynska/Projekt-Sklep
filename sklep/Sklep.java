@@ -6,11 +6,14 @@ import relokacjawzgledempopytu.Metoda2;
 import relokacjawzgledempopytu.Metoda3;
 import relokacjawzgledempopytu.RelokacjaWzgledemPopytu;
 
+import javax.swing.table.DefaultTableModel;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Sklep implements PodmiotTydzien, Serializable {
+    private ArrayList<Produkt> produktyNaPromocji;
+
     ArrayList<ObserwatorTygodnia> listaObserwatorow;
     private Regal[] regalyWSklepie; // tablica z regałami
     private int ktoryTydzien; //który jest tydzień symulacji zaczynamy 1
@@ -18,6 +21,9 @@ public class Sklep implements PodmiotTydzien, Serializable {
     private RelokacjaSezonowa relokacjaSezonowa;
 
     public Sklep() {		//domyślny jego używamy
+
+        this.produktyNaPromocji = new ArrayList<>();
+
         ktoryTydzien = 1;
         iloscRegalow = 4;
         listaObserwatorow = new ArrayList<>();
@@ -37,6 +43,7 @@ public class Sklep implements PodmiotTydzien, Serializable {
         zrelokujSezonowo();
 //        zapiszDoPliku();
     }
+
 
     public void wyswietlSklep(){
         for (int i = 0; i < regalyWSklepie.length; i++) {// ktory regal
@@ -168,27 +175,10 @@ public class Sklep implements PodmiotTydzien, Serializable {
             System.out.println("Wprowadz poprawny numer tygodnia!");
         }
     }
-
-    //SERIALIZACJA
-    public void zapiszDoPliku() {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("Sklep.ser"))) {
-            outputStream.writeObject(this);
-            System.out.println("Stan sklepu zapisany do pliku.\n");
-        } catch (IOException e) {
-            System.err.println("Błąd podczas zapisywania do pliku: " + e.getMessage());
-        }
-    }
-
-    public Sklep wczytajZPliku() {
-        Sklep sklep = null;
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("Sklep.ser"))) {
-            sklep = (Sklep) inputStream.readObject();
-            System.out.println("Stan sklepu wczytany z pliku.\n");
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Błąd podczas wczytywania z pliku: " + e.getMessage());
-        }
-        return sklep;
-    }
+     public void zapiszDoPliku(){
+        Serializacja s = new Serializacja();
+        s.zapiszDoPlikuSklep(this, "Sklep.ser");
+     }
 
     @Override
     public void zarejestrujObserwatora(ObserwatorTygodnia o) {
@@ -252,5 +242,69 @@ public class Sklep implements PodmiotTydzien, Serializable {
 
     public ArrayList<ObserwatorTygodnia> getListaObserwatorow() {
         return listaObserwatorow;
+    }
+
+    public ArrayList<Produkt> getProduktyNaPromocji() {
+        return produktyNaPromocji;
+    }
+
+    public void setProduktyNaPromocji(ArrayList<Produkt> produktyNaPromocji) {
+        this.produktyNaPromocji = produktyNaPromocji;
+    }
+
+    private ArrayList<ArrayList<Object>> zaktualizujProduktyNaPromocji() {
+        ArrayList<Produkt> wszystkieProduktyNaPromocji = new ArrayList<Produkt>();
+        System.out.println("Produkty na promocji:");
+        ArrayList<ArrayList<Object>> promocja = new ArrayList<>();
+
+        for (int i = 0; i < getRegalyWSklepie().length; i++) {
+
+
+            for (int k = 0; k <getRegalyWSklepie()[i].getPolkiWRegale()[0].length; k++) {
+                for (int j = 0; j < getRegalyWSklepie()[i].getPolkiWRegale().length; j++) {
+
+                    for (int l = 0; l < getRegalyWSklepie()[i].getPolkiWRegale()[j][k].getProdukty1D().length; l++) {
+                        if(getRegalyWSklepie()[i].getPolkiWRegale()[j][k].getProdukty1D()[l].getCzyPromocja()){
+                            wszystkieProduktyNaPromocji.add(getRegalyWSklepie()[i].getPolkiWRegale()[j][k].getProdukty1D()[l]);
+                            ArrayList<Object> wiersz = new ArrayList<>(List.of(getRegalyWSklepie()[i].getPolkiWRegale()[j][k].getProdukty1D()[l], i, k, j, l));
+                            promocja.add(wiersz);
+                        }
+                    }
+                }
+            }
+        }
+        ///////
+        //this.produktyNaPromocji = zwrocUnikalneProdukty(wszystkieProduktyNaPromocji );
+        this.produktyNaPromocji = wszystkieProduktyNaPromocji;
+        return promocja;
+    }
+
+    public DefaultTableModel getTabelaZDanymiPromocyjnymi(){
+        ArrayList<ArrayList<Object>> promocja = zaktualizujProduktyNaPromocji();
+        String[] columnNames = {"typProduktu", "producent","cena", "wartoscPromocji", "regal", "kolumna regalu","wiersz regalu", "glebokosc" };
+        DefaultTableModel tabela = new DefaultTableModel(columnNames, 0);
+        for(ArrayList<Object> element: promocja){
+            Produkt produkt = (Produkt) element.get(0);
+            Object[] wiersze = {
+                    produkt.getTypProduktu(), produkt.getProducent(), produkt.getCena(), produkt.getWartoscPromocji(), element.get(1), element.get(2), element.get(3), element.get(4)
+            };
+            tabela.addRow(wiersze);
+        }
+        return tabela;
+    }
+
+
+
+    public ArrayList<Produkt> zwrocUnikalneProdukty(ArrayList<Produkt> listaProduktow){
+        Set<String> unikalneProdukty = new HashSet<>();
+        ArrayList<Produkt> result = new ArrayList<>();
+        for (Produkt produkt : listaProduktow){
+            String tymczasoweSerie = produkt.getnrSerii();
+            if(!unikalneProdukty.contains(tymczasoweSerie)){
+                result.add(produkt);
+                unikalneProdukty.add(tymczasoweSerie);
+            }
+        }
+        return result;
     }
 }

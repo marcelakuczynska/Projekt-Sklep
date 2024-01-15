@@ -24,6 +24,7 @@ public class MainGUI2 {
 
             new Frame();
 
+
         });
     }
 }
