@@ -65,6 +65,7 @@ public class PanelMenu extends JPanel {
 
         button4.addActionListener(e ->{
             //statystyki ogolne
+
             SwingUtilities.invokeLater(() -> {
                 Wykresy.pokazRamkeSprzedazyCalorocznej(sklep);
             });

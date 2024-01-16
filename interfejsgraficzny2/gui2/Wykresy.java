@@ -170,6 +170,4 @@ public class Wykresy {
     private static double roundToTwoDecimalPlaces(Number value) {
         return Math.round(value.doubleValue() * 100.0) / 100.0;
     }
-
-
 }

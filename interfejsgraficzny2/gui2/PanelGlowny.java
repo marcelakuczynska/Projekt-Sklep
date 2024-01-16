@@ -16,6 +16,7 @@ public class PanelGlowny {
 
     public PanelGlowny(Frame frame, Sklep sklep) {
         frame.setLayout(new BorderLayout());
+
         this.frame = frame;
         this.sklep = sklep;
 

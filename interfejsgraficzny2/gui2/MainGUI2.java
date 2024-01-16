@@ -30,7 +30,6 @@ public class MainGUI2 {
             sklep = s.wczytajZPlikuSklep("Sklep.ser");
             new Frame(sklep);
 
-
         });
     }
 }

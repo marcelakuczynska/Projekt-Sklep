@@ -19,7 +19,7 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-public class WykresyStare {
+public class Wykresy1 {
     public static void wykresSprzedazyCalorocznej(Sklep sklep) {
         Map<String, Double> dataMap = new HashMap<>();
 
