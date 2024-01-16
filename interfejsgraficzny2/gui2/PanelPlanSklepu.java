@@ -2,6 +2,8 @@ package interfejsgraficzny2.gui2;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class PanelPlanSklepu extends JPanel {
@@ -22,6 +24,71 @@ public class PanelPlanSklepu extends JPanel {
         button3 = createButton("Projekt-Sklep/interfejsgraficzny2/obrazki/regalyinne.jpg");;
         button4 = createButton("Projekt-Sklep/interfejsgraficzny2/obrazki/regalyinne.jpg");;
 
+        button1.addActionListener((ActionListener) new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelPlanSklepu.this);
+
+			        // Create a new instance of Regal1
+			        Regal1 regal1 = new Regal1();
+
+			        // Dispose of the current frame
+			        topFrame.dispose();
+
+			        // Set the frame to be visible
+			        regal1.setVisible(true);
+			}
+        });
+        
+        
+        button2.addActionListener((ActionListener) new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelPlanSklepu.this);
+
+			        // Create a new instance of Regal1
+			        Regal2 regal2 = new Regal2();
+
+			        // Dispose of the current frame
+			        topFrame.dispose();
+
+			        // Set the frame to be visible
+			        regal2.setVisible(true);
+			}
+        });
+        
+        button3.addActionListener((ActionListener) new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelPlanSklepu.this);
+
+			        // Create a new instance of Regal1
+			        Regal3 regal3 = new Regal3();
+
+			        // Dispose of the current frame
+			        topFrame.dispose();
+
+			        // Set the frame to be visible
+			        regal3.setVisible(true);
+			}
+        });
+        
+        button4.addActionListener((ActionListener) new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelPlanSklepu.this);
+
+			        // Create a new instance of Regal1
+			        Regal4 regal4 = new Regal4();
+
+			        // Dispose of the current frame
+			        topFrame.dispose();
+
+			        // Set the frame to be visible
+			        regal4.setVisible(true);
+			}
+        });
+        
         add(selectShelfLabel);
         addWithEmptyBorder(button1);
         addWithEmptyBorder(button2);
