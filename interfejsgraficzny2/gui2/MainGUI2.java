@@ -1,6 +1,8 @@
 package interfejsgraficzny2.gui2;
 
 import interfejsgraficzny2.gui2.Frame;
+import sklep.Serializacja;
+import sklep.Sklep;
 
 import javax.swing.*;
 
@@ -22,7 +24,11 @@ public class MainGUI2 {
                 throw new RuntimeException(e);
             }
 
-            new Frame();
+            Sklep sklep = new Sklep();
+
+            Serializacja s = new Serializacja();
+            sklep = s.wczytajZPlikuSklep("Sklep.ser");
+            new Frame(sklep);
 
 
         });

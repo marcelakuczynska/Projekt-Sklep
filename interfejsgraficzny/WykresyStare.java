@@ -7,7 +7,6 @@ import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.KeyedValueComparator;
 import org.jfree.data.category.DefaultCategoryDataset;
 import sklep.Polka;
 import sklep.Regal;
@@ -20,7 +19,7 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-public class Wykresy {
+public class WykresyStare {
     public static void wykresSprzedazyCalorocznej(Sklep sklep) {
         Map<String, Double> dataMap = new HashMap<>();
 
@@ -52,6 +51,8 @@ public class Wykresy {
 
         wyswietlWykres(chart);
     }
+
+
 
     public static void wykresSprzedazyCalorocznejDlaRegalu(Regal regal) {
         Map<String, Double> dataMap = new HashMap<>(regal.getStatystykaCaloroczna().getStatystykiOgolne());

@@ -81,7 +81,7 @@ public class Menu extends JMenuBar {
 
             JButton chartButton = new JButton("Show Chart");
             chartButton.addActionListener(e -> {
-                Wykresy.wykresSprzedazyCalorocznej(sklep);
+                WykresyStare.wykresSprzedazyCalorocznej(sklep);
             });
 
             JPanel buttonPanel = new JPanel();

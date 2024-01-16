@@ -2,6 +2,7 @@ package interfejsgraficzny2.gui2;
 
 import javax.swing.*;
 import java.awt.*;
+import sklep.Sklep;
 
 public class PanelGlowny {
     private JPanel panelTytulowy;
@@ -10,17 +11,19 @@ public class PanelGlowny {
     private JPanel panelWspolny;
     private JProgressBar progressBar;
     private Frame frame;
+    private Sklep sklep;
 
 
-    public PanelGlowny(Frame frame) {
+    public PanelGlowny(Frame frame, Sklep sklep) {
         frame.setLayout(new BorderLayout());
         this.frame = frame;
+        this.sklep = sklep;
 
         panelTytulowy = new JPanel();
         panelTytulowy.setLayout(new BorderLayout());
 
         panelPlanSklepu = new PanelPlanSklepu();
-        panelMenu = new PanelMenu(frame);
+        panelMenu = new PanelMenu(frame, sklep);
 
         //panel tytulowy
         JPanel panelProgres = new JPanel();
