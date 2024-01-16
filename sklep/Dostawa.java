@@ -64,12 +64,6 @@ public class Dostawa implements Serializable {
                 {"Mąka pszenna", "Młyny Polskie", 5, 3.80, "Młyny Polskie0000", 10},
                 {"Mąka pszenna", "Kupiec", 4, 4.20, "Kupiec0000", 10},
                 {"Mąka pszenna", "Szymanowski", 3, 4.50, "Szymanowski0000", 10},
-                {"Mąka żytnia", "Kruszwica", 5, 3.50, "Kruszwica0000", 10},
-                {"Mąka żytnia", "Kupiec", 4, 3.80, "Kupiec0000", 10},
-                {"Mąka żytnia", "Młyny Polskie", 3, 4.00, "Młyny Polskie0000", 10},
-                {"Mąka kukurydziana", "Mać Pariadka", 5, 5.00, "Mać Pariadka0000", 10},
-                {"Mąka kukurydziana", "Hortex", 4, 4.80, "Hortex0000", 10},
-                {"Mąka kukurydziana", "Biedronka", 3, 4.50, "Biedronka0000", 10},
                 {"Woda mineralna", "Żywiec Zdrój", 4, 1.80, "Żywiec Zdrój0000", 10},
                 {"Woda mineralna", "Cisowianka", 5, 1.50, "Cisowianka0000", 10},
                 {"Woda mineralna", "Nałęczowianka", 3, 1.60, "Nałęczowianka0000", 10}
