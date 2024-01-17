@@ -26,7 +26,7 @@ public class Frame extends JFrame {
         int y = (screenSize.height - getHeight()) / 2;
         setLocation(x, y);
 
-        backgroundPanel = new BackgroundPanel("Projekt-Sklep/interfejsgraficzny2/obrazki/regaltlo.jpg");
+        backgroundPanel = new BackgroundPanel("https://github.com/poradajakub/Projekt-Sklep/blob/23111cd418c1cef6d2094122f147f781eeba78c6/interfejsgraficzny2/obrazki/regaltlo.jpg");
         backgroundPanel.setBounds(0, 0, getWidth(), getHeight()-35);
         backgroundPanel.setLayout(new BorderLayout());
         add(backgroundPanel);
@@ -86,7 +86,10 @@ public class BackgroundPanel extends JPanel {
         private Image backgroundImage;
 
         public BackgroundPanel(String imagePath) {
-            backgroundImage = new ImageIcon(imagePath).getImage();
+
+            ClassLoader classLoader = getClass().getClassLoader();
+            java.net.URL imageURL = classLoader.getResource("interfejsgraficzny2/obrazki/regaltlo.jpg");
+            backgroundImage = new ImageIcon(imageURL).getImage();
         }
 
         @Override
