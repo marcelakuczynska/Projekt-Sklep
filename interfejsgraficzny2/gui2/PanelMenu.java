@@ -1,6 +1,7 @@
 package interfejsgraficzny2.gui2;
 
-import interfejsgraficzny.Wykresy;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
 import sklep.Serializacja;
 import sklep.Sklep;
 
@@ -25,10 +26,8 @@ public class PanelMenu extends JPanel {
     private Sklep sklep;
 
 
-    public PanelMenu(Frame frame) {
-
-        Serializacja s = new Serializacja();
-         this.sklep = s.wczytajZPlikuSklep("Sklep.ser");
+    public PanelMenu(Frame frame, Sklep sklep) {
+        this.sklep = sklep;
 
         setLayout(new GridLayout(0, 1));
         setOpaque(false);
@@ -53,18 +52,23 @@ public class PanelMenu extends JPanel {
 
         button2.addActionListener(e -> {
             //serializacja
-            sklep.zapiszDoPliku();
+            this.sklep.zapiszDoPliku();
             JOptionPane.showMessageDialog(frame, "Zapisano stan sklepu", "Serializacja", JOptionPane.INFORMATION_MESSAGE);
         });
 
         button3.addActionListener(e -> {
             //serializacja
-            sklep = s.wczytajZPlikuSklep("Sklep.ser");
+            Serializacja s = new Serializacja();
+            this.sklep = s.wczytajZPlikuSklep("Sklep.ser");
             JOptionPane.showMessageDialog(frame, "Odczytano stan sklepu", "Deserializacja", JOptionPane.INFORMATION_MESSAGE);
         });
 
         button4.addActionListener(e ->{
             //statystyki ogolne
+
+            SwingUtilities.invokeLater(() -> {
+                Wykresy.pokazRamkeSprzedazyCalorocznej(sklep);
+            });
         });
 
         button5.addActionListener(new ActionListener() {

@@ -15,9 +15,9 @@ public class Frame extends JFrame {
     private BufferedImage myPicture;
     private JPanel backgroundPanel;
 
-    public Frame(){;
+    public Frame(Sklep sklep) {
+        this.sklep = sklep;
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        sklep = new Sklep();
 
         setSize(1000, 650);
         setResizable(false);
@@ -32,13 +32,13 @@ public class Frame extends JFrame {
         add(backgroundPanel);
 
 
-        PanelGlowny panelGlowny= new PanelGlowny(this);
+        PanelGlowny panelGlowny= new PanelGlowny(this,sklep);
 
         UIManager.put("OptionPane.yesButtonText", "Tak");
         UIManager.put("OptionPane.noButtonText", "Nie");
         UIManager.put("OptionPane.cancelButtonText", "Anuluj");
 
-        addWindowListener( new ConfirmCloseListener());
+        addWindowListener(new ConfirmCloseListener());
         setVisible(true);
     }
 
