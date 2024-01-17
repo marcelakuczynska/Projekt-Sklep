@@ -15,8 +15,8 @@ public class MainGUI2 {
             try {
                 // Odpowiednie zakomentowac przy uzywaniu:
 
-                setLookAndFeel("com.apple.laf.AquaLookAndFeel"); // MacOS
-                //setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"); // Windows
+                //setLookAndFeel("com.apple.laf.AquaLookAndFeel"); // MacOS
+                setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"); // Windows
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             } catch (InstantiationException e) {
