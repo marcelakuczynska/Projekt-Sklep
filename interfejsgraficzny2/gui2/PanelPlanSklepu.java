@@ -19,10 +19,10 @@ public class PanelPlanSklepu extends JPanel {
         JLabel selectShelfLabel = new JLabel("WYBIERZ REGAL", SwingConstants.CENTER);
         selectShelfLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
 
-        button1 = createButton("Projekt-Sklep/interfejsgraficzny2/obrazki/regalyinne.jpg");
-        button2 = createButton("Projekt-Sklep/interfejsgraficzny2/obrazki/regalyinne.jpg");;
-        button3 = createButton("Projekt-Sklep/interfejsgraficzny2/obrazki/regalyinne.jpg");;
-        button4 = createButton("Projekt-Sklep/interfejsgraficzny2/obrazki/regalyinne.jpg");;
+        button1 = createButton("regalyinne.jpg");
+        button2 = createButton("regalyinne.jpg");
+        button3 = createButton("regalyinne.jpg");
+        button4 = createButton("regalyinne.jpg");
 
         button1.addActionListener((ActionListener) new ActionListener() {
 			@Override
@@ -99,7 +99,9 @@ public class PanelPlanSklepu extends JPanel {
     private JButton createButton(String imagePath) {
         JButton button = new JButton();
 
-        ImageIcon originalIcon = new ImageIcon(imagePath);
+
+
+        ImageIcon originalIcon = loadImageIcon(imagePath);
         Image originalImage = originalIcon.getImage();
 
         int buttonWidth = 300;
@@ -120,5 +122,10 @@ public class PanelPlanSklepu extends JPanel {
         panel.add(component, BorderLayout.CENTER);
         panel.setBorder(BorderFactory.createEmptyBorder(5, 70, 5, 70));
         add(panel);
+    }
+    private ImageIcon loadImageIcon(String imageName) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        java.net.URL imageURL = classLoader.getResource("interfejsgraficzny2/obrazki/" + imageName);
+        return new ImageIcon(imageURL);
     }
 }

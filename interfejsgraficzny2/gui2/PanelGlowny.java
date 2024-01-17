@@ -32,7 +32,7 @@ public class PanelGlowny {
         progressBar = new JProgressBar(1, 365);
         progressBar.setPreferredSize(new Dimension(200, 20));
         progressBar.setStringPainted(true);
-        progressBar.setString("1/365");
+        progressBar.setString(sklep.getKtoryTydzien() + "/52");
         panelProgres.add(progressBar);
 
         JLabel label = new JLabel("SUPERMARKET", SwingConstants.CENTER);
@@ -62,12 +62,12 @@ public class PanelGlowny {
 
 
         panelMenu.getButton1().addActionListener(e -> {
-
+            //TODO: tu podpiac tydzien ale jak sie go podepnie to chyba nie bedzie dzialac ale to akurat sie wyklepie
             int newProgressValue = progressBar.getValue() + 1;
             if (newProgressValue <= progressBar.getMaximum()) {
                 progressBar.setValue(newProgressValue);
-                progressBar.setString(Integer.toString(newProgressValue)+ "/365");
-
+                progressBar.setString(Integer.toString(newProgressValue)+ "/52");
+                //TODO: tu podpiac tydzien
             }
         });
 
