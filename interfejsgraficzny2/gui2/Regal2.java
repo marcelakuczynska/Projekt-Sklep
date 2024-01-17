@@ -1,12 +1,18 @@
 package interfejsgraficzny2.gui2;
 
+import sklep.Sklep;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Regal2 extends JFrame {
+    private Sklep sklep;
+
     public Regal2() {
+        this.sklep =sklep;
+
         // USTAWIENIA RAMKI
         setTitle("Regał 1");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -231,7 +237,7 @@ public class Regal2 extends JFrame {
             	 dispose();
 
                  // Create a new instance of PanelGlowny
-                 Frame panelGlowny = new Frame();
+                 Frame panelGlowny = new Frame(sklep);
 
                  // Set the frame to be visible
                  panelGlowny.setVisible(true);
