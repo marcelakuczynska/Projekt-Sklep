@@ -175,9 +175,14 @@ public class Sklep implements PodmiotTydzien, Serializable {
             System.out.println("Wprowadz poprawny numer tygodnia!");
         }
     }
-     public void zapiszDoPliku(){
+     public void zapiszDoPliku() {
         Serializacja s = new Serializacja();
         s.zapiszDoPlikuSklep(this, "Sklep.ser");
+     }
+
+     public Sklep wczytajZPliku() {
+        Serializacja s = new Serializacja();
+        return s.wczytajZPlikuSklep("Sklep.ser");
      }
 
     @Override

@@ -9,9 +9,8 @@ import java.awt.event.ActionListener;
 
 public class Regal1 extends JFrame {
     private Sklep sklep;
-
     public Regal1() {
-        this.sklep =sklep;
+        this.sklep = sklep;
 
         // USTAWIENIA RAMKI
         setTitle("Regał 1");
@@ -239,7 +238,7 @@ public class Regal1 extends JFrame {
             	 dispose();
 
                  // Create a new instance of PanelGlowny
-                 Frame panelGlowny = new Frame(sklep);
+                 Frame panelGlowny = new Frame(getSklep());
 
                  // Set the frame to be visible
                  panelGlowny.setVisible(true);
@@ -285,5 +284,15 @@ public class Regal1 extends JFrame {
 
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(() -> new Regal1().setVisible(true));
+    }
+
+    // GETTERY
+    public Sklep getSklep() {
+        return sklep;
+    }
+
+    // SETTERY
+    public void setSklep(Sklep sklep) {
+        this.sklep = sklep;
     }
 }

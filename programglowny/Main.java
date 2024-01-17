@@ -1,10 +1,12 @@
 package programglowny;
 
 import sklep.Sklep;
+import sklep.Serializacja;
 
 public class Main {
     public static void main(String[] args) {
         Sklep test = new Sklep();
+        Serializacja ser = new Serializacja();
 
         test.wyswietlSklep();
         test.uplywCzasu();
@@ -13,16 +15,18 @@ public class Main {
         test.wyswietlStatystykeTygodniowaSklepu();
         test.wyswietlStatystykeCalorocznaSklepu();
 
-        test.zapiszDoPliku();
 
-        /* //TEST SERIALIZACJI
+
+        //TEST SERIALIZACJI
 
         test.zapiszDoPliku();
-        test.zrelokujSezonowo();
+        test.wczytajZPliku();
+        test.uplywCzasu();
+        test.zapiszDoPliku();
         test.wczytajZPliku().wyswietlSklep();
 
         test.wyswietlStatystykeCalorocznaSklepu();
 
-         */
+
     }
 }
