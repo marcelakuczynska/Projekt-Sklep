@@ -32,7 +32,8 @@ public class PanelGlowny {
         progressBar = new JProgressBar(1, 365);
         progressBar.setPreferredSize(new Dimension(200, 20));
         progressBar.setStringPainted(true);
-        progressBar.setString(sklep.getKtoryTydzien() + "/52");
+//        progressBar.setString(sklep.getKtoryTydzien() + "/52");
+        progressBar.setString("1/52");
         panelProgres.add(progressBar);
 
         JLabel label = new JLabel("SUPERMARKET", SwingConstants.CENTER);
