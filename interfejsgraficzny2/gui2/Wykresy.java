@@ -5,7 +5,6 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
-import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -23,23 +22,23 @@ import java.util.List;
 public class Wykresy {
     public static void pokazRamkeSprzedazyCalorocznej(Sklep sklep) {
         DefaultCategoryDataset dataset = prepareDatasetSklep(sklep);
-        JFreeChart chart = createChart(dataset);
+        JFreeChart chart = createChart(dataset, "Przychód ze sprzedaży poszczególnych produktów w ujęciu całorocznym dla sklepu");
         wyswietlWykres(chart, dataset);
     }
 
-
-
     public static void pokazWykresSprzedazyCalorocznejDlaRegalu(Regal regal) {
-        DefaultCategoryDataset dataset = prepareDataset(regal);
-        JFreeChart chart = createChart(dataset);
+        DefaultCategoryDataset dataset = prepareDatasetRegalOgolny(regal);
+        JFreeChart chart = createChart(dataset, "Przychód ze sprzedaży poszczególnych produktów w ujęciu całorocznym dla regalu");
         wyswietlWykres(chart, dataset);
     }
 
     public static void pokazWykresSprzedazyTygodniowejDlaRegalu(Regal regal) {
-        DefaultCategoryDataset dataset = prepareDataset(regal.getStatystykaTygodniowa());
-        JFreeChart chart = createChart(dataset);
+        DefaultCategoryDataset dataset = prepareDatasetRegalTygdniowy(regal.getStatystykaTygodniowa());
+        JFreeChart chart = createChart(dataset, "Przychód ze sprzedaży poszczególnych produktów w ujęciu tygodniowym dla regalu");
         wyswietlWykres(chart, dataset);
     }
+
+
 
     public static DefaultCategoryDataset prepareDatasetSklep(Sklep sklep) {
         Map<String, Double> dataMap = new HashMap<>();
@@ -62,7 +61,7 @@ public class Wykresy {
         return dataset;
     }
 
-    private static DefaultCategoryDataset prepareDataset(Regal regal) {
+    private static DefaultCategoryDataset prepareDatasetRegalOgolny(Regal regal) {
         Map<String, Double> dataMap = new HashMap<>(regal.getStatystykaCaloroczna().getStatystykiOgolne());
 
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -73,7 +72,7 @@ public class Wykresy {
         return dataset;
     }
 
-    private static DefaultCategoryDataset prepareDataset(StatystykaTygodniowa statystykaTygodniowa) {
+    private static DefaultCategoryDataset prepareDatasetRegalTygdniowy(StatystykaTygodniowa statystykaTygodniowa) {
         Map<Polka, StatystykaTygodniowa.WartosciSprzedazy> dataMap = new TreeMap<>(statystykaTygodniowa.getWynikSprzedazyProduktu());
 
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -86,9 +85,9 @@ public class Wykresy {
 
 
 
-    public static JFreeChart createChart(DefaultCategoryDataset dataset) {
+    public static JFreeChart createChart(DefaultCategoryDataset dataset, String chartTitle) {
         return ChartFactory.createBarChart(
-                "Przychód ze sprzedaży poszczególnych produktów w ujęciu całorocznym",
+                chartTitle,  // Zmiana tytułu wykresu
                 "Nazwa produktu",
                 "Wartość",
                 dataset,
