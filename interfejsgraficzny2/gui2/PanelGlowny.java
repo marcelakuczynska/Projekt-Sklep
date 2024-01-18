@@ -13,15 +13,10 @@ public class PanelGlowny {
     private PanelMenu panelMenu;
     private JPanel panelWspolny;
     private JProgressBar progressBar;
-    private Frame frame;
-    private Sklep sklep;
 
 
     public PanelGlowny(Frame frame, Sklep sklep) {
         frame.setLayout(new BorderLayout());
-
-        this.frame = frame;
-        this.sklep = sklep;
 
         panelTytulowy = new JPanel();
         panelTytulowy.setLayout(new BorderLayout());

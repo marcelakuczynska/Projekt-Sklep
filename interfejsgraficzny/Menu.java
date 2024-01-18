@@ -168,7 +168,7 @@ public class Menu extends JMenuBar {
         public void actionPerformed(ActionEvent e) {
             ramka.getContentPane().removeAll();
             ramka.setLayout(new BorderLayout());
-            String[] metody = {"Metoda 1", "Metoda 2", "Metoda 3"};
+            Integer[] metody = {1,2,3};
 
             JPanel panel = new JPanel();
             JComboBox comboBox = new JComboBox<>(metody);
@@ -177,7 +177,7 @@ public class Menu extends JMenuBar {
             comboBox.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String wybranaMetoda = (String) comboBox.getSelectedItem();
+                    int wybranaMetoda = (int) comboBox.getSelectedItem();
                     selectedMethodLabel.setText("Wybrana metoda: " + wybranaMetoda);
                     sklep.wybierzRelokacjePopytowa(wybranaMetoda);
                 }

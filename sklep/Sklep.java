@@ -206,15 +206,15 @@ public class Sklep implements PodmiotTydzien, Serializable {
         }
     }
 
-    public void wybierzRelokacjePopytowa(String metoda) {
+    public void wybierzRelokacjePopytowa(int metoda) {
         switch (metoda) {
-            case "Metoda 1":
+            case 1:
                 ustawRelokacjePopytowa(new Metoda1());
                 break;
-            case "Metoda 2":
+            case 2:
                 ustawRelokacjePopytowa(new Metoda2());
                 break;
-            case "Metoda 3":
+            case 3:
                 ustawRelokacjePopytowa(new Metoda3());
                 break;
         }

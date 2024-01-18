@@ -14,18 +14,16 @@ public class PanelMenu extends JPanel {
     private JButton odczyt;
     private JButton statystyki;
     private JButton algorytm;
-    private String[] metody;
+    private Integer[] metody;
     private JButton promocje;
 
     private int spacing = 1;
 
     private Sklep sklep;
-    private Regal regal;
 
 
     public PanelMenu(Frame frame, Sklep sklep) {
         this.sklep = sklep;
-        this.regal = regal;
 
         setLayout(new GridLayout(0, 1));
         setOpaque(false);
@@ -80,8 +78,18 @@ public class PanelMenu extends JPanel {
         algorytm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                metody = new String[]{"Metoda 1", "Metoda 2", "Metoda 3"};
-                JComboBox<String> optionComboBox = new JComboBox<>(metody);
+                metody = new Integer[]{1, 2, 3};
+                JComboBox<Integer> optionComboBox = new JComboBox<>(metody);
+
+                optionComboBox.setRenderer(new DefaultListCellRenderer() {
+                    @Override
+                    public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                        value = "Metoda " + value;
+                        return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                    }
+                });
+
+
                 JLabel opis1 = new JLabel("Metoda 1: srodek, gora, dol");
                 JLabel opis2 = new JLabel("Metoda 2: srodek, dol, gora");
                 JLabel opis3 = new JLabel("Metoda 3: gora, dol, srodek");
@@ -106,10 +114,10 @@ public class PanelMenu extends JPanel {
                         null);
 
                 if (result == JOptionPane.OK_OPTION) {
-                    String selectedOption = (String) optionComboBox.getSelectedItem();
+                    int selectedOption = (int) optionComboBox.getSelectedItem();
                     sklep.wybierzRelokacjePopytowa(selectedOption);
                     JOptionPane.showMessageDialog(frame,
-                            "Wybrano: " + selectedOption,
+                            "Wybrano metode: " + selectedOption,
                             "Algorytm koszykowy", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
