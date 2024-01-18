@@ -29,8 +29,8 @@ public class MainGUI2 {
 
             Sklep sklep = new Sklep();
 
-            Serializacja s = new Serializacja();
-            sklep = s.wczytajZPlikuSklep("Sklep.ser");
+//            Serializacja s = new Serializacja();
+//            sklep = s.wczytajZPlikuSklep("Sklep.ser");
             new Frame(sklep);
 
         });

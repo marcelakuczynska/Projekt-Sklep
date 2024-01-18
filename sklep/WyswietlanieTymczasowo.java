@@ -60,7 +60,7 @@ public class WyswietlanieTymczasowo {
 
     public static String wyswietlProduktyNaPromocji(Sklep sklep){
         JTable table = new JTable(sklep.getTabelaZDanymiPromocyjnymi());
-        ArrayList<Produkt> promocja = sklep.getProduktyNaPromocji();
+        ArrayList<ArrayList<Produkt>> promocja = sklep.getProduktyNaPromocji();
 
         System.out.println(table);
         if(promocja.isEmpty()){
@@ -69,7 +69,6 @@ public class WyswietlanieTymczasowo {
             JPanel panel = new JPanel(new BorderLayout());
             panel.add(new JScrollPane(table), BorderLayout.CENTER);
             JOptionPane.showMessageDialog(null, panel, "Sklep dane", JOptionPane.INFORMATION_MESSAGE);
-
 
         }
         return null;

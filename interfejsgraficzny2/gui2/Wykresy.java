@@ -28,18 +28,18 @@ public class Wykresy {
     }
 
 
-//
-//    public static void pokazWykresSprzedazyCalorocznejDlaRegalu(Regal regal) {
-//        DefaultCategoryDataset dataset = prepareDataset(regal);
-//        JFreeChart chart = createChart(dataset);
-//        wyswietlWykres(chart, dataset);
-//    }
-//
-//    public static void pokazWykresSprzedazyTygodniowejDlaRegalu(Regal regal) {
-//        DefaultCategoryDataset dataset = prepareDataset(regal.getStatystykaTygodniowa());
-//        JFreeChart chart = createChart(dataset);
-//        wyswietlWykres(chart, dataset);
-//    }
+
+    public static void pokazWykresSprzedazyCalorocznejDlaRegalu(Regal regal) {
+        DefaultCategoryDataset dataset = prepareDataset(regal);
+        JFreeChart chart = createChart(dataset);
+        wyswietlWykres(chart, dataset);
+    }
+
+    public static void pokazWykresSprzedazyTygodniowejDlaRegalu(Regal regal) {
+        DefaultCategoryDataset dataset = prepareDataset(regal.getStatystykaTygodniowa());
+        JFreeChart chart = createChart(dataset);
+        wyswietlWykres(chart, dataset);
+    }
 
     public static DefaultCategoryDataset prepareDatasetSklep(Sklep sklep) {
         Map<String, Double> dataMap = new HashMap<>();
@@ -62,28 +62,28 @@ public class Wykresy {
         return dataset;
     }
 
-//    private static DefaultCategoryDataset prepareDataset(Regal regal) {
-//        Map<String, Double> dataMap = new HashMap<>(regal.getStatystykaCaloroczna().getStatystykiOgolne());
-//
-//        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-//        for (String key : dataMap.keySet()) {
-//            dataset.addValue(dataMap.get(key), "Przychód ze sprzedaży produktu", key);
-//        }
-//
-//        return dataset;
-//    }
-//
-//    private static DefaultCategoryDataset prepareDataset(StatystykaTygodniowa statystykaTygodniowa) {
-//        Map<Polka, StatystykaTygodniowa.WartosciSprzedazy> dataMap = new TreeMap<>(statystykaTygodniowa.getWynikSprzedazyProduktu());
-//
-//        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-//        for (Polka key : dataMap.keySet()) {
-//            dataset.addValue(dataMap.get(key).getZysk(), "Przychód ze sprzedaży produktu", key.getTypProduktu() + " - " + key.getProducent());
-//        }
-//
-//        return dataset;
-//    }
-//
+    private static DefaultCategoryDataset prepareDataset(Regal regal) {
+        Map<String, Double> dataMap = new HashMap<>(regal.getStatystykaCaloroczna().getStatystykiOgolne());
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        for (String key : dataMap.keySet()) {
+            dataset.addValue(dataMap.get(key), "Przychód ze sprzedaży produktu", key);
+        }
+
+        return dataset;
+    }
+
+    private static DefaultCategoryDataset prepareDataset(StatystykaTygodniowa statystykaTygodniowa) {
+        Map<Polka, StatystykaTygodniowa.WartosciSprzedazy> dataMap = new TreeMap<>(statystykaTygodniowa.getWynikSprzedazyProduktu());
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        for (Polka key : dataMap.keySet()) {
+            dataset.addValue(dataMap.get(key).getZysk(), "Przychód ze sprzedaży produktu", key.getTypProduktu() + " - " + key.getProducent());
+        }
+
+        return dataset;
+    }
+
 
 
     public static JFreeChart createChart(DefaultCategoryDataset dataset) {
@@ -111,19 +111,23 @@ public class Wykresy {
 
             // Create a table
             JTable table = createTable(dataset);
-            JScrollPane tableScrollPane = new JScrollPane(table);
+
+            JMenuBar menuBar = new JMenuBar();
+
+            JMenuItem showTableInMenu = new JMenuItem("Wyswietl dane");
+            showTableInMenu.addActionListener(e -> pokazTabele(table));
+            menuBar.add(showTableInMenu);
+
+            frame.setJMenuBar(menuBar);
 
             // Create a chart panel
             ChartPanel chartPanel = new ChartPanel(chart);
 
             // Use a split pane to display the chart on the left and the table on the right
-            JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, chartPanel, tableScrollPane);
-
-            frame.setLayout(new BorderLayout());
-            frame.add(splitPane, BorderLayout.CENTER);
+            frame.add(chartPanel, BorderLayout.CENTER);
 
             // Set the size of the frame
-            frame.setSize(1280, 960);
+            frame.setSize(650, 500);
 
             // Set the location of the frame
             frame.setLocationRelativeTo(null);
@@ -166,6 +170,23 @@ public class Wykresy {
         // Create and return the table
         return new JTable(tableModel);
     }
+    private static void pokazTabele(JTable table) {
+        // Pokaż tabelę w nowym oknie
+        JFrame tableFrame = new JFrame("Dane przychodu");
+        tableFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        JScrollPane tableScrollPane = new JScrollPane(table);
+        tableFrame.getContentPane().add(tableScrollPane);
+
+        // Set the size of the table frame
+        tableFrame.setSize(600, 400);
+
+        // Set the location of the table frame
+        tableFrame.setLocationRelativeTo(null);
+
+        tableFrame.setVisible(true);
+    }
+
 
     private static double roundToTwoDecimalPlaces(Number value) {
         return Math.round(value.doubleValue() * 100.0) / 100.0;

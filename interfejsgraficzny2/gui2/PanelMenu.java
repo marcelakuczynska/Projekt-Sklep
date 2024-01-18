@@ -102,6 +102,8 @@ public class PanelMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+//                WyswietlanieTymczasowo w = new WyswietlanieTymczasowo();
+//                w.wyswietlProduktyNaPromocji(sklep);
 
                 JTable table = new JTable(sklep.getTabelaZDanymiPromocyjnymi());
                 ArrayList<ArrayList<Produkt>> promocja = sklep.getProduktyNaPromocji();
@@ -113,6 +115,7 @@ public class PanelMenu extends JPanel {
                     JPanel panel = new JPanel(new BorderLayout());
                     panel.add(new JScrollPane(table), BorderLayout.CENTER);
                     JOptionPane.showMessageDialog(null, panel, "Sklep dane", JOptionPane.INFORMATION_MESSAGE);
+
                 }
 
             }

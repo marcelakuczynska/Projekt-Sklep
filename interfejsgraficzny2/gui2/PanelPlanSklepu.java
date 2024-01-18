@@ -1,5 +1,7 @@
 package interfejsgraficzny2.gui2;
 
+import sklep.Sklep;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,8 +13,11 @@ public class PanelPlanSklepu extends JPanel {
     private JButton button2;
     private JButton button3;
     private JButton button4;
+    private Sklep sklep;
 
     public PanelPlanSklepu() {
+        this.sklep = sklep;
+
         setLayout(new GridLayout(0, 1));
         setBackground(new Color(255, 255, 255, 190));
 
@@ -30,7 +35,7 @@ public class PanelPlanSklepu extends JPanel {
 				 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelPlanSklepu.this);
 
 			        // Create a new instance of Regal1
-			        Regal1 regal1 = new Regal1();
+			        Regal1 regal1 = new Regal1(sklep);
 
 			        // Dispose of the current frame
 			        topFrame.dispose();
@@ -47,7 +52,7 @@ public class PanelPlanSklepu extends JPanel {
 				 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelPlanSklepu.this);
 
 			        // Create a new instance of Regal1
-			        Regal2 regal2 = new Regal2();
+			        Regal2 regal2 = new Regal2(sklep);
 
 			        // Dispose of the current frame
 			        topFrame.dispose();
@@ -63,7 +68,7 @@ public class PanelPlanSklepu extends JPanel {
 				 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelPlanSklepu.this);
 
 			        // Create a new instance of Regal1
-			        Regal3 regal3 = new Regal3();
+			        Regal3 regal3 = new Regal3(sklep);
 
 			        // Dispose of the current frame
 			        topFrame.dispose();
@@ -79,7 +84,7 @@ public class PanelPlanSklepu extends JPanel {
 				 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelPlanSklepu.this);
 
 			        // Create a new instance of Regal1
-			        Regal4 regal4 = new Regal4();
+			        Regal4 regal4 = new Regal4(sklep);
 
 			        // Dispose of the current frame
 			        topFrame.dispose();
