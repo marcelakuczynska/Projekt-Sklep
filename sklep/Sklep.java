@@ -12,7 +12,7 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class Sklep implements PodmiotTydzien, Serializable {
-    private ArrayList<ArrayList<Produkt>> produktyNaPromocji;
+    private ArrayList<Produkt> produktyNaPromocji;
 
     ArrayList<ObserwatorTygodnia> listaObserwatorow;
     private Regal[] regalyWSklepie; // tablica z regałami
@@ -41,8 +41,7 @@ public class Sklep implements PodmiotTydzien, Serializable {
         ktoryTydzien++;
         powiadomObserwatorow();
         kolejneDostawy();
-        zrelokujSezonowo();
-//        zapiszDoPliku();
+        produktyNaPromocji.clear();
     }
 
 
@@ -253,55 +252,58 @@ public class Sklep implements PodmiotTydzien, Serializable {
         return listaObserwatorow;
     }
 
-    public ArrayList<ArrayList<Produkt>> getProduktyNaPromocji() {
+    public ArrayList<Produkt> getProduktyNaPromocji() {
         return produktyNaPromocji;
     }
 
-    public void setProduktyNaPromocji(ArrayList<ArrayList<Produkt>> produktyNaPromocji) {
+    public void setProduktyNaPromocji(ArrayList<Produkt> produktyNaPromocji) {
         this.produktyNaPromocji = produktyNaPromocji;
     }
 
-    public ArrayList<ArrayList<Produkt>> zaktualizujProduktyNaPromocji() {
-        ArrayList<ArrayList<Produkt>> promocja = new ArrayList<>();
+    public ArrayList<Produkt> zaktualizujProduktyNaPromocji() {
+        ArrayList<Produkt> promocja = new ArrayList<>();
         Regal[] regaly = getRegalyWSklepie();
 
         for(Regal regal: regaly){
             ArrayList<Produkt> produktyNaPromocji = regal.getProduktyNaPromocji();
             if(!produktyNaPromocji.isEmpty()){
-                promocja.add(produktyNaPromocji);
+                promocja.addAll(produktyNaPromocji);
             }
         }
 
-        produktyNaPromocji = promocja;
+        setProduktyNaPromocji(promocja);
         return promocja;
     }
 
     public DefaultTableModel getTabelaZDanymiPromocyjnymi(){
-        ArrayList<Produkt> promocja = getPlaskaTabelaZDanymiPromocyjnymi();
-        String[] columnNames = {"typProduktu", "producent","cena", "wartoscPromocji" };
+        ArrayList<Produkt> promocja = zaktualizujProduktyNaPromocji();
+        String[] columnNames = {"typProduktu", "producent","cena", "wartoscPromocji", "DataWaznosci" };
         DefaultTableModel tabela = new DefaultTableModel(columnNames, 0);
-        for(Produkt produkt: promocja){
-            Object[] wiersze = {
-                    produkt.getTypProduktu(), produkt.getProducent(), produkt.getCena(), produkt.getWartoscPromocji()
-            };
-            tabela.addRow(wiersze);
+        /*for(Produkt produkt: promocja) {
+            if (produkt.getCzyPromocja()) {
+                Object[] wiersze = {
+                        produkt.getTypProduktu(), produkt.getProducent(), produkt.getCena(), produkt.getWartoscPromocji(), produkt.getDataWaznosci()
+                };
+                tabela.addRow(wiersze);
+            }
+        }*/
+        for (int i = 0; i < regalyWSklepie.length; i++) { // ktory regal
+            for (int k = 0; k < regalyWSklepie[i].getPolkiWRegale()[0].length; k++) { // kolumny regalu
+                for (int j = 0; j < regalyWSklepie[i].getPolkiWRegale().length; j++) {
+                    for (int l = 0; l < regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D().length; l++) {
+                        Produkt produkt = regalyWSklepie[i].getPolkiWRegale()[j][k].getProdukty1D()[l];
+                        if(produkt.getCzyPromocja()){
+                            Object[] wiersze = {
+                                    produkt.getTypProduktu(), produkt.getProducent(), produkt.getCena(), produkt.getWartoscPromocji(), produkt.getDataWaznosci()
+                            };
+                            tabela.addRow(wiersze);
+                        }
+                    }
+                }
+            }
         }
         return tabela;
     }
-
-    private ArrayList<Produkt> getPlaskaTabelaZDanymiPromocyjnymi() {
-        ArrayList<ArrayList<Produkt>> promocja = zaktualizujProduktyNaPromocji();
-
-        ArrayList<Produkt> flatList = new ArrayList<>();
-
-        for (ArrayList<Produkt> innerList : promocja) {
-            flatList.addAll(innerList);
-        }
-
-        return flatList;
-    }
-
-
 
 
     public ArrayList<Produkt> zwrocUnikalneProdukty(ArrayList<Produkt> listaProduktow){

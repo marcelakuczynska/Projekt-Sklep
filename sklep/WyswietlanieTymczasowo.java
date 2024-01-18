@@ -60,7 +60,7 @@ public class WyswietlanieTymczasowo {
 
     public static String wyswietlProduktyNaPromocji(Sklep sklep){
         JTable table = new JTable(sklep.getTabelaZDanymiPromocyjnymi());
-        ArrayList<ArrayList<Produkt>> promocja = sklep.getProduktyNaPromocji();
+        ArrayList<Produkt> promocja = sklep.getProduktyNaPromocji();
 
         System.out.println(table);
         if(promocja.isEmpty()){

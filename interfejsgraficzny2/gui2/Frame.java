@@ -9,7 +9,6 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 
 public class Frame extends JFrame {
-    //TODO: NIEDOKONCZONE! jeszcze to ogarne! i zmienie grafiki bo sie zlewaja
 
     private Sklep sklep;
     private BufferedImage myPicture;
