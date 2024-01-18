@@ -15,7 +15,7 @@ public class PanelPlanSklepu extends JPanel {
     private JButton button4;
     private Sklep sklep;
 
-    public PanelPlanSklepu() {
+    public PanelPlanSklepu(Sklep sklep) {
         this.sklep = sklep;
 
         setLayout(new GridLayout(0, 1));

@@ -1,7 +1,5 @@
 package interfejsgraficzny2.gui2;
 
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.category.DefaultCategoryDataset;
 import sklep.*;
 
 import javax.swing.*;
@@ -11,14 +9,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class PanelMenu extends JPanel {
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
-    private JComboBox comboBox;
+    private JButton przesunTydzien;
+    private JButton zapis;
+    private JButton odczyt;
+    private JButton statystyki;
+    private JButton algorytm;
     private String[] metody;
-    private JButton button6;
+    private JButton promocje;
 
     private int spacing = 1;
 
@@ -34,37 +31,37 @@ public class PanelMenu extends JPanel {
         setOpaque(false);
 
 
-        button1 = new JButton("Przesun tydzien");
-        button2 = new JButton("Zapis");
-        button3 = new JButton("Odczyt");
-        button4 = new JButton("Statystyki ogolne");
-        button5 = new JButton("Algorytm koszykowy");
-        button6 = new JButton("Promocje");
+        przesunTydzien = new JButton("Przesun tydzien");
+        zapis = new JButton("Zapis");
+        odczyt = new JButton("Odczyt");
+        statystyki = new JButton("Statystyki ogolne");
+        algorytm = new JButton("Algorytm koszykowy");
+        promocje = new JButton("Promocje");
 
         add(Box.createVerticalStrut(spacing));
         add(Box.createVerticalStrut(spacing));
-        add(button1);
-        add(button2);
-        add(button3);
-        add(button4);
-        add(button5);
-        add(button6);
+        add(przesunTydzien);
+        add(zapis);
+        add(odczyt);
+        add(statystyki);
+        add(algorytm);
+        add(promocje);
 
 
-        button2.addActionListener(e -> {
+        zapis.addActionListener(e -> {
             //serializacja
             this.sklep.zapiszDoPliku();
             JOptionPane.showMessageDialog(frame, "Zapisano stan sklepu", "Serializacja", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        button3.addActionListener(e -> {
+        odczyt.addActionListener(e -> {
             //serializacja
             Serializacja s = new Serializacja();
             this.sklep = s.wczytajZPlikuSklep("Sklep.ser");
             JOptionPane.showMessageDialog(frame, "Odczytano stan sklepu", "Deserializacja", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        button4.addActionListener(e ->{
+        statystyki.addActionListener(e ->{
             //statystyki ogolne
 
             SwingUtilities.invokeLater(() -> {
@@ -72,15 +69,27 @@ public class PanelMenu extends JPanel {
             });
         });
 
-        button5.addActionListener(new ActionListener() {
+        algorytm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: metody
                 metody = new String[]{"Metoda 1", "Metoda 2", "Metoda 3"};
                 JComboBox<String> optionComboBox = new JComboBox<>(metody);
+                JLabel opis1 = new JLabel("Metoda 1: srodek, gora, dol");
+                JLabel opis2 = new JLabel("Metoda 2: srodek, dol, gora");
+                JLabel opis3 = new JLabel("Metoda 3: gora, dol, srodek");
+                JPanel panel = new JPanel();
+                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                panel.add(Box.createVerticalStrut(10));
+                panel.add(opis1);
+                panel.add(opis2);
+                panel.add(opis3);
+                panel.add(Box.createVerticalStrut(10));
+                panel.add(optionComboBox);
+                panel.add(Box.createVerticalStrut(10));
 
                 int result = JOptionPane.showOptionDialog(frame,
-                        optionComboBox,
+                        panel,
                         "Wybierz algorytm koszykowy",
                         JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE,
@@ -90,6 +99,7 @@ public class PanelMenu extends JPanel {
 
                 if (result == JOptionPane.OK_OPTION) {
                     String selectedOption = (String) optionComboBox.getSelectedItem();
+                    sklep.wybierzRelokacjePopytowa(selectedOption);
                     JOptionPane.showMessageDialog(frame,
                             "Wybrano: " + selectedOption,
                             "Algorytm koszykowy", JOptionPane.INFORMATION_MESSAGE);
@@ -97,7 +107,7 @@ public class PanelMenu extends JPanel {
             }
         });
 
-        button6.addActionListener(new ActionListener(){
+        promocje.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -109,9 +119,9 @@ public class PanelMenu extends JPanel {
                 ArrayList<ArrayList<Produkt>> promocja = sklep.getProduktyNaPromocji();
 
                 System.out.println(table);
-                if(promocja.isEmpty()){
+                if (promocja.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Nie ma danych", "Sklep dane", JOptionPane.INFORMATION_MESSAGE);
-                }else{
+                } else {
                     JPanel panel = new JPanel(new BorderLayout());
                     panel.add(new JScrollPane(table), BorderLayout.CENTER);
                     JOptionPane.showMessageDialog(null, panel, "Sklep dane", JOptionPane.INFORMATION_MESSAGE);
@@ -125,7 +135,7 @@ public class PanelMenu extends JPanel {
 
 
 
-    public JButton getButton1() {
-        return button1;
+    public JButton getPrzesunTydzien() {
+        return przesunTydzien;
     }
 }

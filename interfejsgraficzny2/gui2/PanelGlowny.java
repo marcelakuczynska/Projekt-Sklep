@@ -2,6 +2,9 @@ package interfejsgraficzny2.gui2;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import sklep.Sklep;
 
 public class PanelGlowny {
@@ -11,7 +14,7 @@ public class PanelGlowny {
     private JPanel panelWspolny;
     private JProgressBar progressBar;
     private Frame frame;
-    private Sklep sklep;
+    private final Sklep sklep;
 
 
     public PanelGlowny(Frame frame, Sklep sklep) {
@@ -23,7 +26,7 @@ public class PanelGlowny {
         panelTytulowy = new JPanel();
         panelTytulowy.setLayout(new BorderLayout());
 
-        panelPlanSklepu = new PanelPlanSklepu();
+        panelPlanSklepu = new PanelPlanSklepu(sklep);
         panelMenu = new PanelMenu(frame, sklep);
 
         //panel tytulowy
@@ -62,14 +65,15 @@ public class PanelGlowny {
         frame.getBackgroundPanel().add(new JSeparator(JSeparator.VERTICAL), BorderLayout.SOUTH);
 
 
-        panelMenu.getButton1().addActionListener(e -> {
-            //TODO: tu podpiac tydzien ale jak sie go podepnie to chyba nie bedzie dzialac ale to akurat sie wyklepie
-            sklep.uplywCzasu();
-            int newProgressValue = progressBar.getValue() + 1;
-            if (newProgressValue <= progressBar.getMaximum()) {
-                progressBar.setValue(newProgressValue);
-                progressBar.setString(Integer.toString(newProgressValue)+ "/52");
-                //TODO: tu podpiac tydzien
+        panelMenu.getPrzesunTydzien().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int newProgressValue = progressBar.getValue() + 1;
+                if (newProgressValue <= progressBar.getMaximum()) {
+                    sklep.uplywCzasu();
+                    progressBar.setValue(newProgressValue);
+                    progressBar.setString(Integer.toString(newProgressValue)+ "/52");
+                }
             }
         });
 
