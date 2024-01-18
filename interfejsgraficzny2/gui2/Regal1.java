@@ -1,31 +1,16 @@
 package interfejsgraficzny2.gui2;
 
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.category.DefaultCategoryDataset;
-import sklep.Produkt;
-import sklep.Regal;
 import sklep.Sklep;
-import sklep.Polka;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
-import java.util.List;
-
-import static interfejsgraficzny2.gui2.Wykresy.createChart;
-import static interfejsgraficzny2.gui2.Wykresy.wyswietlWykres;
 
 public class Regal1 extends JFrame {
     private Sklep sklep;
-    private Regal regal;
-    private Produkt produkt;
-
-    public Regal1(Sklep sklep) {
+    public Regal1() {
         this.sklep = sklep;
-        this.regal = sklep.getRegalyWSklepie()[0];
-        this.produkt = produkt;
 
         // USTAWIENIA RAMKI
         setTitle("Regał 1");
@@ -92,128 +77,127 @@ public class Regal1 extends JFrame {
         JButton button15 = new JButton(produkt15);
 
         button1.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 //				JOptionPane.showMessageDialog(Regal1.this, "OK", "Button 1 Clicked", JOptionPane.INFORMATION_MESSAGE);
 				
 			}
         });
-
+        
         button2.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button3.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button4.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button5.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button6.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button7.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button8.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button9.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button10.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button11.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button12.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button13.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button14.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
+        
         button15.addActionListener((ActionListener) new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
-
-
+        
+        
+        
         button1.setBounds(50, 20, 100, 100);
         button2.setBounds(162, 20, 100, 100);
         button3.setBounds(274, 20, 100, 100);
@@ -238,130 +222,77 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Your code for statOgolne button action
-                Wykresy.pokazWykresSprzedazyCalorocznejDlaRegalu(regal);
-        }
-    });
+            }
+        });
 
-        statTygodniowe.addActionListener(new
+        statTygodniowe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Your code for statTygodniowe button action
+            }
+        });
 
-    ActionListener() {
-        @Override
-        public void actionPerformed (ActionEvent e){
-            // Your code for statTygodniowe button action
-            Wykresy.pokazWykresSprzedazyTygodniowejDlaRegalu(regal);
-        }
-    });
+        powrot.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	 dispose();
 
-        powrot.addActionListener(new
+                 // Create a new instance of PanelGlowny
+                 Frame panelGlowny = new Frame(getSklep());
 
-    ActionListener() {
-        @Override
-        public void actionPerformed (ActionEvent e){
-            dispose();
-
-            // Create a new instance of PanelGlowny
-            Frame panelGlowny = new Frame(sklep);
-
-            // Set the frame to be visible
-            panelGlowny.setVisible(true);
-        }
-    });
+                 // Set the frame to be visible
+                 panelGlowny.setVisible(true);
+            }
+        });
         
-        statOgolne.setBounds(37,460,178,50);
-        statTygodniowe.setBounds(224,460,172,50);
-        powrot.setBounds(406,460,185,50);
+        statOgolne.setBounds(37, 460, 178, 50);
+        statTygodniowe.setBounds(224, 460, 172, 50);
+        powrot.setBounds(406, 460, 185, 50);
 
-    // tu dodaje wszystko do ramki
-    getContentPane().
+        // tu dodaje wszystko do ramki
+        getContentPane().setLayout(null);
+        
+        getContentPane().add(button1);
+        getContentPane().add(button2);
+        getContentPane().add(button3);
+        getContentPane().add(button4);
+        getContentPane().add(button5);
+        getContentPane().add(button6);
+        getContentPane().add(button7);
+        getContentPane().add(button8);
+        getContentPane().add(button9);
+        getContentPane().add(button10);
+        getContentPane().add(button11);
+        getContentPane().add(button12);
+        getContentPane().add(button13);
+        getContentPane().add(button14);
+        getContentPane().add(button15);
+        getContentPane().add(statOgolne);
+        getContentPane().add(statTygodniowe);
+        getContentPane().add(powrot);
 
-    setLayout(null);
+        getContentPane().add(mainImageLabel);
+        
+        setLocationRelativeTo(null);
+    }
+    
+    private ImageIcon loadImageIcon(String imageName) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        java.net.URL imageURL = classLoader.getResource("interfejsgraficzny2/obrazki/" + imageName);
+        return new ImageIcon(imageURL);
+    }
 
-    getContentPane().
+    public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(() -> new Regal1().setVisible(true));
+    }
 
-    add(button1);
+    // GETTERY
+    public Sklep getSklep() {
+        return sklep;
+    }
 
-    getContentPane().
-
-    add(button2);
-
-    getContentPane().
-
-    add(button3);
-
-    getContentPane().
-
-    add(button4);
-
-    getContentPane().
-
-    add(button5);
-
-    getContentPane().
-
-    add(button6);
-
-    getContentPane().
-
-    add(button7);
-
-    getContentPane().
-
-    add(button8);
-
-    getContentPane().
-
-    add(button9);
-
-    getContentPane().
-
-    add(button10);
-
-    getContentPane().
-
-    add(button11);
-
-    getContentPane().
-
-    add(button12);
-
-    getContentPane().
-
-    add(button13);
-
-    getContentPane().
-
-    add(button14);
-
-    getContentPane().
-
-    add(button15);
-
-    getContentPane().
-
-    add(statOgolne);
-
-    getContentPane().
-
-    add(statTygodniowe);
-
-    getContentPane().
-
-    add(powrot);
-
-    getContentPane().
-
-    add(mainImageLabel);
-
-    setLocationRelativeTo(null);
-}
-
-private ImageIcon loadImageIcon(String imageName) {
-    ClassLoader classLoader = getClass().getClassLoader();
-    java.net.URL imageURL = classLoader.getResource("interfejsgraficzny2/obrazki/" + imageName);
-    return new ImageIcon(imageURL);
-}
-
-//public static void main(String[] args) {
-//    javax.swing.SwingUtilities.invokeLater(() -> new Regal1(regal).setVisible(true));
-//}
+    // SETTERY
+    public void setSklep(Sklep sklep) {
+        this.sklep = sklep;
+    }
 }

@@ -23,16 +23,15 @@ public class PanelGlowny {
         panelTytulowy = new JPanel();
         panelTytulowy.setLayout(new BorderLayout());
 
-        panelPlanSklepu = new PanelPlanSklepu(sklep);
+        panelPlanSklepu = new PanelPlanSklepu();
         panelMenu = new PanelMenu(frame, sklep);
 
         //panel tytulowy
         JPanel panelProgres = new JPanel();
         panelProgres.setOpaque(false);
-        progressBar = new JProgressBar(1, 52);
+        progressBar = new JProgressBar(1, 365);
         progressBar.setPreferredSize(new Dimension(200, 20));
         progressBar.setStringPainted(true);
-        progressBar.setValue(sklep.getKtoryTydzien());
         progressBar.setString(sklep.getKtoryTydzien() + "/52");
         panelProgres.add(progressBar);
 
@@ -64,7 +63,6 @@ public class PanelGlowny {
 
         panelMenu.getButton1().addActionListener(e -> {
             //TODO: tu podpiac tydzien ale jak sie go podepnie to chyba nie bedzie dzialac ale to akurat sie wyklepie
-            sklep.uplywCzasu();
             int newProgressValue = progressBar.getValue() + 1;
             if (newProgressValue <= progressBar.getMaximum()) {
                 progressBar.setValue(newProgressValue);

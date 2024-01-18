@@ -1,6 +1,5 @@
 package interfejsgraficzny2.gui2;
 
-import sklep.Regal;
 import sklep.Sklep;
 
 import javax.swing.*;
@@ -10,12 +9,9 @@ import java.awt.event.ActionListener;
 
 public class Regal4 extends JFrame {
     private Sklep sklep;
-    private Regal regal;
 
     public Regal4() {
-        this.sklep =sklep;
-        this.regal = sklep.getRegalyWSklepie()[0];
-
+        this.sklep = sklep;
 
         // USTAWIENIA RAMKI
         setTitle("Regał 1");
@@ -226,7 +222,6 @@ public class Regal4 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Your code for statOgolne button action
-                Wykresy.pokazWykresSprzedazyCalorocznejDlaRegalu(regal);
             }
         });
 
@@ -234,7 +229,6 @@ public class Regal4 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Your code for statTygodniowe button action
-                Wykresy.pokazWykresSprzedazyTygodniowejDlaRegalu(regal);
             }
         });
 
@@ -244,7 +238,7 @@ public class Regal4 extends JFrame {
             	 dispose();
 
                  // Create a new instance of PanelGlowny
-                 Frame panelGlowny = new Frame(sklep);
+                 Frame panelGlowny = new Frame(getSklep());
 
                  // Set the frame to be visible
                  panelGlowny.setVisible(true);
@@ -290,5 +284,15 @@ public class Regal4 extends JFrame {
 
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(() -> new Regal4().setVisible(true));
+    }
+
+    // GETTERY
+    public Sklep getSklep() {
+        return sklep;
+    }
+
+    // SETTERY
+    public void setSklep(Sklep sklep) {
+        this.sklep = sklep;
     }
 }
