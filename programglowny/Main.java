@@ -8,12 +8,12 @@ public class Main {
         Sklep test = new Sklep();
         Serializacja ser = new Serializacja();
 
-        test.wyswietlSklep();
+        //test.wyswietlSklep();
         test.uplywCzasu();
         test.uplywCzasu();
 
-        test.wyswietlStatystykeTygodniowaSklepu();
-        test.wyswietlStatystykeCalorocznaSklepu();
+       // test.wyswietlStatystykeTygodniowaSklepu();
+        //test.wyswietlStatystykeCalorocznaSklepu();
 
 
 
@@ -25,7 +25,7 @@ public class Main {
         test.zapiszDoPliku();
         test.wczytajZPliku().wyswietlSklep();
 
-        test.wyswietlStatystykeCalorocznaSklepu();
+       // test.wyswietlStatystykeCalorocznaSklepu();
 
 
     }

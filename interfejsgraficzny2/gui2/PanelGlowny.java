@@ -14,7 +14,7 @@ public class PanelGlowny {
     private JPanel panelWspolny;
     private JProgressBar progressBar;
     private Frame frame;
-    private final Sklep sklep;
+    private Sklep sklep;
 
 
     public PanelGlowny(Frame frame, Sklep sklep) {

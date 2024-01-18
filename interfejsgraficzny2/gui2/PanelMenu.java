@@ -58,6 +58,14 @@ public class PanelMenu extends JPanel {
             //serializacja
             Serializacja s = new Serializacja();
             this.sklep = s.wczytajZPlikuSklep("Sklep.ser");
+
+            new Frame(this.sklep);
+
+            Window window = SwingUtilities.getWindowAncestor(this);
+            if (window instanceof JFrame) {
+                ((JFrame) window).dispose();
+            }
+
             JOptionPane.showMessageDialog(frame, "Odczytano stan sklepu", "Deserializacja", JOptionPane.INFORMATION_MESSAGE);
         });
 
