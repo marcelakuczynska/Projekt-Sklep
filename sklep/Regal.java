@@ -86,7 +86,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
                 if (produktyNaPolce != null) {
                     for (int k = 0; k < produktyNaPolce.length; k++) {
                         if (produktyNaPolce[k] != null) {
-                            if (produktyNaPolce[k].getCzyPromocja()) {
+                            if (produktyNaPolce[k].getDataWaznosci()<=1) {
                                 //powiadamia obserwatorow i przekazuje im polke na ktorej lezy usuwany produkt oraz jego cene
                                 powiadomObserwatorow(polkiWRegale[i][j], produktyNaPolce[k].getCena());
 

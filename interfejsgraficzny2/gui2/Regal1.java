@@ -94,8 +94,10 @@ public class Regal1 extends JFrame {
         button1.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//				JOptionPane.showMessageDialog(Regal1.this, "OK", "Button 1 Clicked", JOptionPane.INFORMATION_MESSAGE);
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(0,0);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+                //System.out.println("OKOKO");
             }
         });
 
@@ -103,7 +105,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(0,1);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
 
 
             }
@@ -113,7 +117,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(0,2);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -121,7 +127,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(0,3);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -129,7 +137,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(0,4);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -137,7 +147,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(1,0);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -145,7 +157,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(1,1);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -153,7 +167,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(1,2);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -161,7 +177,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(1,3);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -169,7 +187,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(1,4);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -177,7 +197,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(2,0);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -185,7 +207,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(2,1);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -193,7 +217,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(2,2);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -201,7 +227,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(2,3);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -209,7 +237,9 @@ public class Regal1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                PrzewijalneOkno aaa= new PrzewijalneOkno(2,4);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
             }
         });
 
@@ -361,7 +391,36 @@ public class Regal1 extends JFrame {
         return new ImageIcon(imageURL);
     }
 
+    private class PrzewijalneOkno extends JFrame {
+        public PrzewijalneOkno(int x, int y) {
+            // Ustawienia podstawowe okna
+            setTitle("Polka [" + x + ", " + y + "]");
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setSize(500, 350);
+
+            // Tworzenie obszaru tekstowego
+            JTextArea textArea = new JTextArea(regal.getPolkiWRegale()[x][y].toString());
+            textArea.setEditable(false); // Ustawienie, aby obszar tekstowy był tylko do odczytu
+
+            // Ustawienie czcionki
+            Font currentFont = textArea.getFont();
+            int newSize = currentFont.getSize() + 2; // Przykładowy przyrost rozmiaru czcionki (zmień według potrzeb)
+            Font newFont = new Font(currentFont.getName(), currentFont.getStyle(), newSize);
+            textArea.setFont(newFont);
+
+            // Dodanie obszaru tekstowego do panelu z przewijaniem
+            JScrollPane scrollPane = new JScrollPane(textArea);
+
+            // Dodanie panelu z przewijaniem do okna
+            add(scrollPane, BorderLayout.CENTER);
+        }
+    }
+
+
 //public static void main(String[] args) {
 //    javax.swing.SwingUtilities.invokeLater(() -> new Regal1(regal).setVisible(true));
 //}
 }
+
+
+

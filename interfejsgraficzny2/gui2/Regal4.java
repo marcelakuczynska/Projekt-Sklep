@@ -80,125 +80,156 @@ public class Regal4 extends JFrame {
         JButton button14 = new JButton(produkt14);
         JButton button15 = new JButton(produkt15);
 
-        button1.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-//				JOptionPane.showMessageDialog(Regal1.this, "OK", "Button 1 Clicked", JOptionPane.INFORMATION_MESSAGE);
-				
-			}
+         button1.addActionListener((ActionListener) new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PrzewijalneOkno aaa= new PrzewijalneOkno(0,0);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+                //System.out.println("OKOKO");
+            }
         });
-        
+
         button2.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(0,1);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+
+
+            }
         });
-        
+
         button3.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(0,2);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
-        
+
         button4.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(0,3);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
-        
+
         button5.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(0,4);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
-        
+
         button6.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(1,0);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
-        
+
         button7.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(1,1);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
-        
+
         button8.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(1,2);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
-        
+
         button9.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(1,3);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
-        
+
         button10.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(1,4);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
-        
+
         button11.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(2,0);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
-        
+
         button12.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(2,1);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
-        
-        
+
         button13.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(2,2);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
-        
+
         button14.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(2,3);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
-        
+
         button15.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                PrzewijalneOkno aaa= new PrzewijalneOkno(2,4);
+                aaa.setVisible(true);
+                aaa.setLocationRelativeTo(null);
+            }
         });
         
         button1.setBounds(50, 20, 100, 100);
@@ -286,7 +317,30 @@ public class Regal4 extends JFrame {
         java.net.URL imageURL = classLoader.getResource("interfejsgraficzny2/obrazki/" + imageName);
         return new ImageIcon(imageURL);
     }
+    private class PrzewijalneOkno extends JFrame {
+        public PrzewijalneOkno(int x, int y) {
+            // Ustawienia podstawowe okna
+            setTitle("Polka [" + x + ", " + y + "]");
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setSize(500, 350);
 
+            // Tworzenie obszaru tekstowego
+            JTextArea textArea = new JTextArea(regal.getPolkiWRegale()[x][y].toString());
+            textArea.setEditable(false); // Ustawienie, aby obszar tekstowy był tylko do odczytu
+
+            // Ustawienie czcionki
+            Font currentFont = textArea.getFont();
+            int newSize = currentFont.getSize() + 2; // Przykładowy przyrost rozmiaru czcionki (zmień według potrzeb)
+            Font newFont = new Font(currentFont.getName(), currentFont.getStyle(), newSize);
+            textArea.setFont(newFont);
+
+            // Dodanie obszaru tekstowego do panelu z przewijaniem
+            JScrollPane scrollPane = new JScrollPane(textArea);
+
+            // Dodanie panelu z przewijaniem do okna
+            add(scrollPane, BorderLayout.CENTER);
+        }
+    }
 //    public static void main(String[] args) {
 //        javax.swing.SwingUtilities.invokeLater(() -> new Regal4().setVisible(true));
 //    }

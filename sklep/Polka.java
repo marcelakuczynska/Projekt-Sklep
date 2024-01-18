@@ -83,4 +83,11 @@ public class Polka implements Serializable,Comparable<Polka> {
     public int hashCode() {
         return Objects.hash(typProduktu, producent, cenaBazowa, dataWaznosci, glebokoscPolki);
     }
+
+    public String toString(){
+        String res="";
+        for(int i=0;i< produkty1D.length;i++)
+            res+=(produkty1D[i].toString()+"\n");
+        return res;
+    }
 }
