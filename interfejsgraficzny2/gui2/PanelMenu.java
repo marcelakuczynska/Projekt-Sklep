@@ -2,14 +2,13 @@ package interfejsgraficzny2.gui2;
 
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
-import sklep.Serializacja;
-import sklep.Sklep;
+import sklep.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import sklep.WyswietlanieTymczasowo;
+import java.util.ArrayList;
 
 public class PanelMenu extends JPanel {
     private JButton button1;
@@ -24,10 +23,12 @@ public class PanelMenu extends JPanel {
     private int spacing = 1;
 
     private Sklep sklep;
+    private Regal regal;
 
 
     public PanelMenu(Frame frame, Sklep sklep) {
         this.sklep = sklep;
+        this.regal = regal;
 
         setLayout(new GridLayout(0, 1));
         setOpaque(false);
@@ -100,13 +101,25 @@ public class PanelMenu extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                WyswietlanieTymczasowo w = new WyswietlanieTymczasowo();
 
-                w.wyswietlProduktyNaPromocji(sklep);
+
+                JTable table = new JTable(sklep.getTabelaZDanymiPromocyjnymi());
+                ArrayList<ArrayList<Produkt>> promocja = sklep.getProduktyNaPromocji();
+
+                System.out.println(table);
+                if(promocja.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Nie ma danych", "Sklep dane", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JPanel panel = new JPanel(new BorderLayout());
+                    panel.add(new JScrollPane(table), BorderLayout.CENTER);
+                    JOptionPane.showMessageDialog(null, panel, "Sklep dane", JOptionPane.INFORMATION_MESSAGE);
+                }
 
             }
         });
+
     }
+
 
 
     public JButton getButton1() {

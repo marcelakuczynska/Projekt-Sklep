@@ -18,11 +18,13 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
     private StatystykaTygodniowa statystykaTygodniowa;
     private StatystykaCaloroczna statystykaCaloroczna;
     private RelokacjaWzgledemPopytu relokacjaWzgledemPopytu;
+    private ArrayList<Produkt> produktyNaPromocji;
 
     public Regal(PodmiotTydzien sklep) {
         polkiWRegale = new Polka[wysokosc][szerokosc];
         relokacjaWzgledemPopytu = new Metoda1();
 
+        produktyNaPromocji = new ArrayList<>();
         for (int i = 0; i < polkiWRegale.length; i++) {
             for (int j = 0; j < polkiWRegale[i].length; j++) {
                 polkiWRegale[i][j] = new Polka();
@@ -51,6 +53,8 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
     }
 
     public void zmianaDaty () { // odpane przez za pomocą Obserwatora po zmianie tygodnia!!!
+       produktyNaPromocji = new ArrayList<>();
+
         Produkt[] getProdukty1D;
         for (int i = 0; i < polkiWRegale.length; i++) {
             for (int j = 0; j < polkiWRegale[i].length; j++) {
@@ -59,12 +63,16 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
                     for (int k = 0; k < getProdukty1D.length; k++) {
                         if (getProdukty1D[k] != null)
                             getProdukty1D[k].zmianaDatyWaznosci();
-                        if (getProdukty1D[k].getDataWaznosci() == 1)
+                        if (getProdukty1D[k].getDataWaznosci() <= 2)
                             getProdukty1D[k].zrobPromocje(0.5);
+                        produktyNaPromocji.add(getProdukty1D[k]);
                     }
                 }
             }
         }
+    }
+    public ArrayList<Produkt> getProduktyNaPromocji(){
+        return produktyNaPromocji;
     }
 
     public void symulacjaSprzedazy () {    //losowa sprzedaż produktów + też się odpala obserwatorem
