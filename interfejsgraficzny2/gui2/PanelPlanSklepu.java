@@ -34,13 +34,10 @@ public class PanelPlanSklepu extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelPlanSklepu.this);
 
-			        // Create a new instance of Regal1
 			        Regal1 regal1 = new Regal1(sklep);
 
-			        // Dispose of the current frame
 			        topFrame.dispose();
 
-			        // Set the frame to be visible
 			        regal1.setVisible(true);
 			}
         });
@@ -51,13 +48,10 @@ public class PanelPlanSklepu extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelPlanSklepu.this);
 
-			        // Create a new instance of Regal1
 			        Regal2 regal2 = new Regal2(sklep);
 
-			        // Dispose of the current frame
 			        topFrame.dispose();
 
-			        // Set the frame to be visible
 			        regal2.setVisible(true);
 			}
         });
@@ -67,13 +61,10 @@ public class PanelPlanSklepu extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelPlanSklepu.this);
 
-			        // Create a new instance of Regal1
 			        Regal3 regal3 = new Regal3(sklep);
 
-			        // Dispose of the current frame
 			        topFrame.dispose();
 
-			        // Set the frame to be visible
 			        regal3.setVisible(true);
 			}
         });
@@ -83,13 +74,10 @@ public class PanelPlanSklepu extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(PanelPlanSklepu.this);
 
-			        // Create a new instance of Regal1
 			        Regal4 regal4 = new Regal4(sklep);
 
-			        // Dispose of the current frame
 			        topFrame.dispose();
 
-			        // Set the frame to be visible
 			        regal4.setVisible(true);
 			}
         });

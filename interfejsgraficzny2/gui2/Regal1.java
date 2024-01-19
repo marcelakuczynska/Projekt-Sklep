@@ -104,7 +104,6 @@ public class Regal1 extends JFrame {
         button2.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(0,1);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -116,7 +115,6 @@ public class Regal1 extends JFrame {
         button3.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(0,2);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -126,7 +124,6 @@ public class Regal1 extends JFrame {
         button4.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(0,3);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -136,7 +133,6 @@ public class Regal1 extends JFrame {
         button5.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(0,4);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -146,7 +142,6 @@ public class Regal1 extends JFrame {
         button6.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(1,0);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -156,7 +151,6 @@ public class Regal1 extends JFrame {
         button7.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(1,1);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -166,7 +160,6 @@ public class Regal1 extends JFrame {
         button8.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(1,2);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -176,7 +169,6 @@ public class Regal1 extends JFrame {
         button9.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(1,3);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -186,7 +178,6 @@ public class Regal1 extends JFrame {
         button10.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(1,4);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -196,7 +187,6 @@ public class Regal1 extends JFrame {
         button11.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(2,0);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -206,7 +196,6 @@ public class Regal1 extends JFrame {
         button12.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(2,1);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -216,7 +205,6 @@ public class Regal1 extends JFrame {
         button13.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(2,2);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -226,7 +214,6 @@ public class Regal1 extends JFrame {
         button14.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(2,3);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -236,7 +223,6 @@ public class Regal1 extends JFrame {
         button15.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 PrzewijalneOkno aaa= new PrzewijalneOkno(2,4);
                 aaa.setVisible(true);
                 aaa.setLocationRelativeTo(null);
@@ -267,7 +253,6 @@ public class Regal1 extends JFrame {
         statOgolne.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Your code for statOgolne button action
                 Wykresy.pokazWykresSprzedazyCalorocznejDlaRegalu(regal);
             }
         });
@@ -277,7 +262,6 @@ public class Regal1 extends JFrame {
                                                  ActionListener() {
                                                      @Override
                                                      public void actionPerformed (ActionEvent e){
-                                                         // Your code for statTygodniowe button action
                                                          Wykresy.pokazWykresSprzedazyTygodniowejDlaRegalu(regal);
                                                      }
                                                  });
@@ -287,12 +271,11 @@ public class Regal1 extends JFrame {
                                          ActionListener() {
                                              @Override
                                              public void actionPerformed (ActionEvent e){
+
+
+                                                 Frame panelGlowny = new Frame(sklep);
                                                  dispose();
 
-                                                 // Create a new instance of PanelGlowny
-                                                 Frame panelGlowny = new Frame(sklep);
-
-                                                 // Set the frame to be visible
                                                  panelGlowny.setVisible(true);
                                              }
                                          });

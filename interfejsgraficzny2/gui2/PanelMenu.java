@@ -132,7 +132,7 @@ public class PanelMenu extends JPanel {
 //                w.wyswietlProduktyNaPromocji(sklep);
 
                 JTable table = new JTable(sklep.getTabelaZDanymiPromocyjnymi());
-                ArrayList<ArrayList<Produkt>> promocja = sklep.getProduktyNaPromocji();
+                ArrayList<Produkt> promocja = sklep.getProduktyNaPromocji();
 
                 System.out.println(table);
                 if (promocja.isEmpty()) {

@@ -53,7 +53,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
     }
 
     public void zmianaDaty () { // odpane przez za pomocą Obserwatora po zmianie tygodnia!!!
-       produktyNaPromocji = new ArrayList<>();
+       produktyNaPromocji.clear();
 
         Produkt[] getProdukty1D;
         for (int i = 0; i < polkiWRegale.length; i++) {
@@ -61,12 +61,13 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
                 getProdukty1D = polkiWRegale[i][j].getProdukty1D();
                 if (getProdukty1D != null) {
                     for (int k = 0; k < getProdukty1D.length; k++) {
-                        if (getProdukty1D[k] != null)
+                        if (getProdukty1D[k] != null){
                             getProdukty1D[k].zmianaDatyWaznosci();
-                        if (getProdukty1D[k].getDataWaznosci() <= 2)
-                            getProdukty1D[k].zrobPromocje(0.5);
-                        produktyNaPromocji.add(getProdukty1D[k]);
-                        produktyNaPromocji.add(getProdukty1D[k]);
+                            if (getProdukty1D[k].getDataWaznosci() == 2){
+                                getProdukty1D[k].zrobPromocje(0.5);
+                                produktyNaPromocji.add(getProdukty1D[k]);
+                            }
+                        }
                     }
                 }
             }
@@ -76,7 +77,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
         return produktyNaPromocji;
     }
 
-    public void symulacjaSprzedazy () {    //losowa sprzedaż produktów + też się odpala obserwatorem
+    public void symulacjaSprzedazy() {    //losowa sprzedaż produktów + też się odpala obserwatorem
         Random gen = new Random();
         Produkt[] produktyNaPolce;
         for(int i = 0; i < polkiWRegale.length; i++) {
@@ -96,6 +97,17 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
 
                                 produktyNaPolce[k] = null;
                             }
+                            else if((i==1)&&(gen.nextInt(5) + 1 == 1)){
+                                powiadomObserwatorow(polkiWRegale[i][j], produktyNaPolce[k].getCena());
+
+                                produktyNaPolce[k] = null;
+                            }
+                            else if((i==0)&&(gen.nextInt(6) + 1 == 1)){
+                                powiadomObserwatorow(polkiWRegale[i][j], produktyNaPolce[k].getCena());
+
+                                produktyNaPolce[k] = null;
+                            }
+
                         }
                     }
                 }
