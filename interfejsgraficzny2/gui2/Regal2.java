@@ -18,7 +18,7 @@ public class Regal2 extends JFrame {
 
 
         // USTAWIENIA RAMKI
-        setTitle("Regał 1");
+        setTitle("Regał 2");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650, 600);
 

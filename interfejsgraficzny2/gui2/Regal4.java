@@ -17,7 +17,7 @@ public class Regal4 extends JFrame {
         this.regal = sklep.getRegalyWSklepie()[3];
 
         // USTAWIENIA RAMKI
-        setTitle("Regał 1");
+        setTitle("Regał 4");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650, 600);
 
