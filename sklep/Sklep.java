@@ -221,6 +221,7 @@ public class Sklep implements PodmiotTydzien, Serializable {
     private void ustawRelokacjePopytowa(RelokacjaWzgledemPopytu relokacja) {
         for (Regal regal : regalyWSklepie){
             regal.setRelokacjaWzgledemPopytu(relokacja);
+            System.out.println(relokacja.toString());
         }
     }
 

@@ -14,6 +14,7 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
     private final int szerokosc = 5;
     private final int wysokosc = 3;
     private Polka[][] polkiWRegale;
+    private int ktoryTydzien;
     private ArrayList<ObserwatorStatystyki> listaObserwatorow;
     private StatystykaTygodniowa statystykaTygodniowa;
     private StatystykaCaloroczna statystykaCaloroczna;
@@ -42,14 +43,17 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
 
     @Override
     public void aktualizacja(int ktoryTydzien) {
-        //potencjalnie przekazuje ktorytydzien dla relokacji sezonowej?
-        // //ale chyba nie bedzie potrzebne bo relokacja sezonowa ma przesuwac w sklepie regaly?
+        this.ktoryTydzien = ktoryTydzien;
         zmianaDaty();
-        //wraz ze zmiana tygodnia robimy nowe statystyki tygodniowe potrzebne do relokacji
+        //wraz ze zmiana tygodnia robimy nowe statystyki tygodniowe, potrzebne do relokacji
         statystykaTygodniowa = new StatystykaTygodniowa(this, polkiWRegale);
         symulacjaSprzedazy();
         statystykaTygodniowa.generujRanking();
         relokacjaWzgledemPopytu.sposobRelokacjiWzgledemPopytu(statystykaTygodniowa, polkiWRegale);
+
+        if (ktoryTydzien % 52 == 1){
+            statystykaCaloroczna = new StatystykaCaloroczna(this);
+        }
     }
 
     public void zmianaDaty () { // odpane przez za pomocą Obserwatora po zmianie tygodnia!!!

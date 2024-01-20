@@ -30,7 +30,7 @@ public class PanelGlowny {
         progressBar = new JProgressBar(1, 52);
         progressBar.setPreferredSize(new Dimension(200, 20));
         progressBar.setStringPainted(true);
-        progressBar.setValue(sklep.getKtoryTydzien());
+        progressBar.setValue(sklep.getKtoryTydzien() % 52);
         progressBar.setString(sklep.getKtoryTydzien() + "/52");
         panelProgres.add(progressBar);
 
@@ -64,11 +64,13 @@ public class PanelGlowny {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int newProgressValue = progressBar.getValue() + 1;
+                sklep.uplywCzasu();
                 if (newProgressValue <= progressBar.getMaximum()) {
-                    sklep.uplywCzasu();
                     progressBar.setValue(newProgressValue);
-                    progressBar.setString(Integer.toString(newProgressValue)+ "/52");
+                } else {
+                    progressBar.setValue(1);
                 }
+                progressBar.setString(sklep.getKtoryTydzien() + "/52");
             }
         });
 
