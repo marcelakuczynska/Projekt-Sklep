@@ -41,6 +41,21 @@ public class Regal implements ObserwatorTygodnia, PodmiotStatystyki, Serializabl
         statystykaCaloroczna = new StatystykaCaloroczna(this);
     }
 
+    public Regal( Produkt [] produkty1d) {
+        polkiWRegale = new Polka[1][1];
+        polkiWRegale[0][0]=new Polka(produkty1d);
+        relokacjaWzgledemPopytu = null;
+
+        produktyNaPromocji = new ArrayList<>();
+
+
+
+        listaObserwatorow = null;
+
+        //tworzenie statystyki ogolnej ktora trwa caly rok
+        statystykaCaloroczna = null;
+    }
+
     @Override
     public void aktualizacja(int ktoryTydzien) {
         this.ktoryTydzien = ktoryTydzien;

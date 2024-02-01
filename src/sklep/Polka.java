@@ -20,6 +20,12 @@ public class Polka implements Serializable,Comparable<Polka> {
         this.typProduktu = typProduktu;
     }
 
+    public Polka(Produkt []produkty1d){
+        this.produkty1D=produkty1d;
+        this.typProduktu="x";
+
+    }
+
     public void wczytajWartosciBazowePolki(){
         this.typProduktu = produkty1D[0].getTypProduktu();
         this.producent = produkty1D[0].getProducent();

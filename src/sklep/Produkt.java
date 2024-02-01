@@ -1,6 +1,9 @@
 package sklep;
 
 import java.io.Serializable;
+import java.util.Objects;
+
+import static java.util.Objects.*;
 
 public class Produkt implements Serializable {
     private String typProduktu; //np. mleko, mąka, jajka
@@ -20,6 +23,16 @@ public class Produkt implements Serializable {
         this.nrSerii = nrSerii;
         this.producent = Producent;
         this.wartoscPromocji = wartoscPromocji;
+    }
+
+    public Produkt() {
+        this.typProduktu = "a";
+        this.dataWaznosci = 3;
+        this.cena = 1.0;
+        this.czyPromocja = false;
+        this.nrSerii = "a";
+        this.producent = "a";
+        this.wartoscPromocji = 1.0;
     }
 
     public void zrobPromocje(double wartoscPromocji) { //ustalenie promocji
