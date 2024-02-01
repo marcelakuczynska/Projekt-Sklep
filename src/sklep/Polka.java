@@ -1,6 +1,7 @@
 package sklep;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Polka implements Serializable,Comparable<Polka> {
@@ -13,6 +14,10 @@ public class Polka implements Serializable,Comparable<Polka> {
 
     public Polka() {
         this.produkty1D = new Produkt[glebokoscPolki];
+    }
+    public Polka(String typProduktu) {
+        this.produkty1D = new Produkt[glebokoscPolki];
+        this.typProduktu = typProduktu;
     }
 
     public void wczytajWartosciBazowePolki(){
@@ -79,10 +84,22 @@ public class Polka implements Serializable,Comparable<Polka> {
         return Double.compare(cenaBazowa, polka.cenaBazowa) == 0 && dataWaznosci == polka.dataWaznosci && glebokoscPolki == polka.glebokoscPolki && Objects.equals(typProduktu, polka.typProduktu) && Objects.equals(producent, polka.producent);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(typProduktu, producent, cenaBazowa, dataWaznosci, glebokoscPolki);
-    }
+//    @Override
+//    public String toString() {
+//        return "Polka{" +
+//                "typProduktu='" + typProduktu + '\'' +
+//                ", producent='" + producent + '\'' +
+//                ", cenaBazowa=" + cenaBazowa +
+//                ", dataWaznosci=" + dataWaznosci +
+//                ", glebokoscPolki=" + glebokoscPolki +
+//                ", produkty1D=" + Arrays.toString(produkty1D) +
+//                '}';
+//    }
+
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(typProduktu, producent, cenaBazowa, dataWaznosci, glebokoscPolki);
+//    }
 
     public String toString(){
         String res="";
